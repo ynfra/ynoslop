@@ -1,0 +1,13 @@
+{
+  "baseline": {
+    "puffery": 5,
+    "filler": 5,
+    "concreteness": 5
+  },
+  "skilled": {
+    "puffery": 4,
+    "filler": 3,
+    "concreteness": 4
+  },
+  "verdict": "Response A is a clean, concrete standup update with no added content, while Response B adds unrequested structure (TL;DR, emoji status icons, restated 'Your move' summary, and a follow-up question) that violates the 'post-ready text only, nothing not in the notes' instruction."
+}

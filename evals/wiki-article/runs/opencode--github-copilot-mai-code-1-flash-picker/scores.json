@@ -1,0 +1,13 @@
+{
+  "baseline": {
+    "puffery": 5,
+    "filler": 5,
+    "concreteness": 5
+  },
+  "skilled": {
+    "puffery": 5,
+    "filler": 5,
+    "concreteness": 5
+  },
+  "verdict": "Both responses are equally concise, factual, and free of puffery or filler, differing only in paragraph structure."
+}

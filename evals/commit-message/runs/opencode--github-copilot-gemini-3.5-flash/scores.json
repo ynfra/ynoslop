@@ -1,0 +1,13 @@
+{
+  "baseline": {
+    "puffery": 5,
+    "filler": 5,
+    "concreteness": 4
+  },
+  "skilled": {
+    "puffery": 5,
+    "filler": 4,
+    "concreteness": 4
+  },
+  "verdict": "Both are concise and concrete with no puffery, but the baseline is slightly tighter while the skilled response adds marginally more explanatory filler without new facts."
+}

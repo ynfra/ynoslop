@@ -1,0 +1,13 @@
+{
+  "baseline": {
+    "puffery": 5,
+    "filler": 5,
+    "concreteness": 5
+  },
+  "skilled": {
+    "puffery": 5,
+    "filler": 3,
+    "concreteness": 5
+  },
+  "verdict": "Both are equally concrete and clean, but the skilled response includes leftover meta-commentary (\"Draft\", \"Remaining AI patterns\", \"Final Rewrite\") that is itself filler not present in the baseline."
+}

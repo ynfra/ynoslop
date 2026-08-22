@@ -1,0 +1,13 @@
+{
+  "baseline": {
+    "puffery": 5,
+    "filler": 5,
+    "concreteness": 5
+  },
+  "skilled": {
+    "puffery": 4,
+    "filler": 4,
+    "concreteness": 5
+  },
+  "verdict": "Both are concrete and factual, but response B adds unnecessary formatting flourishes (bolded arrow labels) that read as stylistic filler compared to the plain, direct prose of response A."
+}

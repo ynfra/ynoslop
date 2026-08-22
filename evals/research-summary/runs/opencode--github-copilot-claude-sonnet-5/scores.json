@@ -1,0 +1,13 @@
+{
+  "baseline": {
+    "puffery": 4,
+    "filler": 3,
+    "concreteness": 3
+  },
+  "skilled": {
+    "puffery": 5,
+    "filler": 4,
+    "concreteness": 5
+  },
+  "verdict": "Response B is more concrete with specific technical details (RFC 6455, 6-connection limit, 33% base64 overhead) while Response A leans more on generic claims and repeats its recommendation in a more templated way."
+}

@@ -1,0 +1,13 @@
+{
+  "baseline": {
+    "puffery": 5,
+    "filler": 5,
+    "concreteness": 5
+  },
+  "skilled": {
+    "puffery": 5,
+    "filler": 4,
+    "concreteness": 5
+  },
+  "verdict": "Both are concrete and non-puffed, but baseline's JSDoc is more precise (per-param docs) while skilled's inline comment repeats the jitter rationale redundantly."
+}

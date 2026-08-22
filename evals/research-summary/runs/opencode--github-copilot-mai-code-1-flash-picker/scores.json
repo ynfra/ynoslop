@@ -1,0 +1,13 @@
+{
+  "baseline": {
+    "puffery": 4,
+    "filler": 4,
+    "concreteness": 2
+  },
+  "skilled": {
+    "puffery": 4,
+    "filler": 3,
+    "concreteness": 3
+  },
+  "verdict": "Both are similar in quality with generic prose free of marketing puffery, but Response B is slightly more concrete about technical specifics (framing, ping/pong, text-only payloads) while Response A ends with a more redundant restated conclusion."
+}

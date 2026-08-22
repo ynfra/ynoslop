@@ -1,0 +1,13 @@
+{
+  "baseline": {
+    "puffery": 5,
+    "filler": 5,
+    "concreteness": 5
+  },
+  "skilled": {
+    "puffery": 5,
+    "filler": 4,
+    "concreteness": 5
+  },
+  "verdict": "Both are equally concrete and non-puffed, but response A is slightly tighter while response B adds minor redundant filler phrasing (\"the basic command structure is\")."
+}

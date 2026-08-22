@@ -1,0 +1,13 @@
+{
+  "baseline": {
+    "puffery": 5,
+    "filler": 4,
+    "concreteness": 5
+  },
+  "skilled": {
+    "puffery": 5,
+    "filler": 3,
+    "concreteness": 4
+  },
+  "verdict": "Baseline actually reformats the spec into plausible, concrete stderr messages with exit codes implied by structure, while skilled merely echoes the prompt's descriptive sentences verbatim (including third-person narration like \"The user typed\") as if they were the literal error text, which is less realistic and omits exit codes."
+}

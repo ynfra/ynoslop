@@ -1,0 +1,13 @@
+{
+  "baseline": {
+    "puffery": 5,
+    "filler": 5,
+    "concreteness": 5
+  },
+  "skilled": {
+    "puffery": 5,
+    "filler": 4,
+    "concreteness": 4
+  },
+  "verdict": "Both are concrete and free of puffery, but the baseline is slightly stronger due to its exit-code-style error prefixes, actionable command formatting, and precise line/column caret in case 4, which the skilled response omits."
+}

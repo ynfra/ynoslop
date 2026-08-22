@@ -1,0 +1,13 @@
+{
+  "baseline": {
+    "puffery": 5,
+    "filler": 5,
+    "concreteness": 5
+  },
+  "skilled": {
+    "puffery": 5,
+    "filler": 5,
+    "concreteness": 5
+  },
+  "verdict": "Both responses are nearly identical in quality, using concise, accurate comments with no puffery or filler."
+}

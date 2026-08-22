@@ -1,0 +1,13 @@
+{
+  "baseline": {
+    "puffery": 3,
+    "filler": 4,
+    "concreteness": 5
+  },
+  "skilled": {
+    "puffery": 4,
+    "filler": 4,
+    "concreteness": 5
+  },
+  "verdict": "Both are similarly concrete and low-filler, but the skilled response drops the mild superlative phrasing (\"significant performance improvements\", \"significantly\") in favor of plain stated facts, giving it a slight edge on puffery."
+}
