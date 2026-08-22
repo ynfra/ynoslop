@@ -9,9 +9,22 @@ import { config } from "./config.ts";
 import { log } from "./log.ts";
 import type { RunnerName } from "./types.ts";
 
+/** Tools denied to claude. Space- or comma-separated; one argv token. */
+const CLAUDE_DENIED_TOOLS =
+  "Bash,Edit,Write,Read,Glob,Grep,WebFetch,WebSearch,Task,NotebookEdit";
+
 interface RunnerAdapter {
   bin: string;
-  buildArgs(model: string, prompt: string): string[];
+  /** argv WITHOUT the prompt — see promptVia for how the prompt is delivered. */
+  buildArgs(model: string): string[];
+  /**
+   * `argv` appends the prompt as the last argument. `stdin` writes it to the
+   * process instead, which is required whenever a variadic flag would swallow
+   * it — claude's `--disallowedTools <tools...>` consumes every argument that
+   * follows, prompt included — and is safer regardless, since a composed
+   * prompt can run to tens of kilobytes.
+   */
+  promptVia: "argv" | "stdin";
   /**
    * Env that switches off ambient context the runner would otherwise load from
    * $HOME. The composed prompt must be the only instruction a run receives, and
@@ -20,58 +33,111 @@ interface RunnerAdapter {
   env?: Record<string, string>;
 }
 
+/**
+ * opencode's isolation config. Delivered through OPENCODE_CONFIG_CONTENT
+ * because a plain opencode.json in a bare working directory is NOT read — only
+ * an env-delivered config reliably applies. Still written to the spawn cwd as
+ * well, purely so the directory documents itself.
+ *
+ * Only the mutating and agentic tools are removed. `read`/`glob`/`grep` stay,
+ * and that is deliberate: with every tool gone the model still attempts a write
+ * and the blocked call leaks raw `</parameter></invoke>` markup into the answer,
+ * which is worse than the problem it fixes. With no write path to attempt it
+ * simply answers in text, which is what an output-quality eval must measure.
+ * The survivors are harmless here — the spawn cwd is empty.
+ */
+const DISABLED_TOOLS = [
+  "write",
+  "edit",
+  "patch",
+  "bash",
+  "task",
+  "skill",
+  "webfetch",
+  "todowrite",
+  "todoread",
+] as const;
+
+const ISOLATION_CONFIG = (() => {
+  const off: Record<string, boolean> = {};
+  for (const tool of DISABLED_TOOLS) off[tool] = false;
+  return JSON.stringify(
+    {
+      $schema: "https://opencode.ai/config.json",
+      instructions: [],
+      tools: off,
+      // Top-level alone does not take effect; the agent-scoped copy is the one
+      // that actually removes them from the build agent.
+      agent: { build: { tools: off } },
+    },
+    null,
+    2,
+  );
+})();
+
 const ADAPTERS: Record<RunnerName, RunnerAdapter> = {
-  claude: { bin: "claude", buildArgs: (m, p) => ["claude", "-p", "--model", m, p] },
+  // `--bare` looks made for this (it disables CLAUDE.md auto-discovery, hooks,
+  // plugins and auto-memory) but it also states that OAuth and the keychain are
+  // never read, so it needs an ANTHROPIC_API_KEY. On a subscription login that
+  // is not an option — the same trade a container forces — so the equivalent is
+  // assembled from composable flags instead.
+  claude: {
+    bin: "claude",
+    buildArgs: (m) => [
+      "claude",
+      "-p",
+      "--model",
+      m,
+      // Load no user, project or local settings.
+      "--setting-sources",
+      "",
+      // "Disable all skills" — the ~/.claude/skills pathway.
+      "--disable-slash-commands",
+      // Ignore every MCP config; none is supplied, so no servers load.
+      "--strict-mcp-config",
+      // Keep cwd, env info, memory paths and git status out of the system prompt.
+      "--exclude-dynamic-system-prompt-sections",
+      "--disallowedTools",
+      CLAUDE_DENIED_TOOLS,
+    ],
+    promptVia: "stdin",
+  },
   opencode: {
     bin: "opencode",
     // Documented switches: opencode.ai/docs/rules. This kills ~/.claude/CLAUDE.md
     // and, more importantly, ~/.claude/skills — skills are advertised in the
     // skill tool's description and loaded on the model's initiative, so they
     // reach a run no matter what the working directory looks like.
-    buildArgs: (m, p) => ["opencode", "run", "--pure", "-m", m, p],
+    buildArgs: (m) => ["opencode", "run", "--pure", "-m", m],
+    promptVia: "argv",
     env: {
       OPENCODE_DISABLE_CLAUDE_CODE: "1",
       OPENCODE_DISABLE_CLAUDE_CODE_PROMPT: "1",
       OPENCODE_DISABLE_CLAUDE_CODE_SKILLS: "1",
+      OPENCODE_CONFIG_CONTENT: ISOLATION_CONFIG,
     },
   },
-  codex: { bin: "codex", buildArgs: (m, p) => ["codex", "exec", "-m", m, p] },
+  // codex is the best-behaved of the three: --ignore-user-config drops
+  // $CODEX_HOME/config.toml while explicitly keeping auth, so isolation costs
+  // nothing here. --skip-git-repo-check is required, not optional: the spawn
+  // cwd is a bare temp directory, and codex refuses to run outside a repo.
+  codex: {
+    bin: "codex",
+    buildArgs: (m) => [
+      "codex",
+      "exec",
+      "-m",
+      m,
+      "--ignore-user-config",
+      "--ignore-rules",
+      "--ephemeral",
+      "--skip-git-repo-check",
+      "-s",
+      "read-only",
+    ],
+    promptVia: "stdin",
+  },
 };
-
-/**
- * Written into the spawn cwd so opencode treats it as the project root and
- * reads a config that strips the run down to a pure completion.
- *
- * Every tool is off, not just `skill`. These evals measure text a model writes
- * from a prompt it was handed: context arrives inline in the composed prompt,
- * so no eval needs the model to read a file, run a command or fetch a URL. A
- * run that can shell out can also go read this monorepo and answer from it,
- * which is how a recording ends up citing commit conventions that appear
- * nowhere in its prompt. Disabling `skill` alone leaves that door open.
- */
-const ISOLATION_CONFIG = JSON.stringify(
-  {
-    $schema: "https://opencode.ai/config.json",
-    instructions: [],
-    tools: {
-      skill: false,
-      bash: false,
-      edit: false,
-      write: false,
-      read: false,
-      glob: false,
-      grep: false,
-      list: false,
-      patch: false,
-      task: false,
-      todowrite: false,
-      todoread: false,
-      webfetch: false,
-    },
-  },
-  null,
-  2,
-);
 
 export function isAvailable(name: RunnerName): boolean {
   return Bun.which(ADAPTERS[name].bin) !== null;
@@ -132,15 +198,22 @@ export async function spawnRunner(
 ): Promise<SpawnResult> {
   const started = Date.now();
   const adapter = ADAPTERS[runner];
-  const proc = Bun.spawn(adapter.buildArgs(model, prompt), {
+  const args = adapter.buildArgs(model);
+  if (adapter.promptVia === "argv") args.push(prompt);
+  const proc = Bun.spawn(args, {
     cwd: spawnCwd(),
     // Inherit so CLI auth in $HOME still works, then override the keys that
     // pull in ambient instructions and skills.
     env: { ...process.env, ...(adapter.env ?? {}) },
-    stdin: "ignore",
+    stdin: adapter.promptVia === "stdin" ? "pipe" : "ignore",
     stdout: "pipe",
     stderr: "pipe",
   });
+  // Typed optional because it is only a stream when stdin was piped above.
+  if (adapter.promptVia === "stdin" && proc.stdin) {
+    proc.stdin.write(prompt);
+    await proc.stdin.end();
+  }
 
   let timedOut = false;
   const timer = setTimeout(() => {
