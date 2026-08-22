@@ -1,0 +1,8 @@
+{
+  "title": "API error messages",
+  "category": "code",
+  "description": "Write CLI error strings for four failure cases",
+  "skills": [
+    "no-slop-writing"
+  ]
+}

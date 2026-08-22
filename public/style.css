@@ -1,0 +1,937 @@
+/* ynoslop — light-only inspector chrome. No dark overrides on purpose:
+   this is a white, CodeSandbox-ish surface where the two outputs are the hero. */
+
+:root {
+  --surface: #ffffff;
+  --app-bg: #f7f8fa;
+  --subtle: #fafbfc;
+  --border: #e3e7ec;
+  --border-strong: #d5dae1;
+  --fg: #1a2027;
+  --muted: #667180;
+  --accent: #2f6bff;
+  --accent-soft: #eef3ff;
+  --bad: #c03329;
+  --good: #157a41;
+  --del-bg: #fdecea;
+  --add-bg: #eaf6ee;
+  --line-num: #9ba5b2;
+  /* The two variants are told apart by hue, not by right/wrong: sand for the
+     run without a skill, teal for the run with it. Red/green stay
+     reserved for the metric deltas and for the diff's -/+ rows. */
+  --pane-base-bg: #fdf7f1;
+  --pane-base-sub: #f9efe4;
+  --pane-base-ink: #8f5a1c;
+  --pane-base-dot: #c98a3c;
+  --pane-base-edge: #e0b483;
+  --pane-skill-bg: #f1f8f8;
+  --pane-skill-sub: #e5f1f0;
+  --pane-skill-ink: #0f6560;
+  --pane-skill-dot: #17847d;
+  --pane-skill-edge: #9fd4d0;
+  --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--fg);
+  background: var(--app-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+button, select, input { font-family: inherit; }
+
+.grow { flex: 1 1 auto; }
+
+/* ------------------------------------------------------------ topbar */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 54px;
+  flex-shrink: 0;
+  padding: 0 16px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.masthead {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-width: 0;
+}
+
+.logo {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+.wordmark {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+/* the strike is the whole point of the name: the slop gets cut */
+.wordmark-cut {
+  position: relative;
+  color: var(--muted);
+}
+.wordmark-cut::after {
+  content: "";
+  position: absolute;
+  left: -1px;
+  right: -1px;
+  top: 52%;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--bad);
+}
+
+.masthead-rule {
+  width: 1px;
+  height: 22px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+.headline {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.headline {
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+.headline-sub {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--muted);
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.topnav {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.nav-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 13px;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--fg);
+  font-size: 12.5px;
+  cursor: pointer;
+}
+.nav-action:hover { border-color: var(--accent); color: var(--accent); }
+.nav-action.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 236px minmax(0, 1fr);
+  flex: 1;
+  min-height: 0;
+}
+
+/* ------------------------------------------------------------ explorer */
+
+.explorer {
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  padding-bottom: 16px;
+}
+
+.ex-section { padding: 10px 8px 0; }
+
+.ex-heading {
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--muted);
+  padding: 0 6px 6px;
+}
+
+.ex-group {
+  font-size: 11px;
+  color: var(--muted);
+  padding: 9px 6px 2px;
+}
+
+.ex-row {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 3px 8px;
+  margin: 1px 0;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--fg);
+  font-size: 12.5px;
+  line-height: 1.55;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+.ex-row:hover { background: var(--app-bg); }
+.ex-row.active {
+  background: var(--accent-soft);
+  border-color: color-mix(in srgb, var(--accent) 25%, transparent);
+  color: var(--accent);
+}
+/* ------------------------------------------------------------ workspace */
+
+.workspace {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--app-bg);
+}
+
+.placeholder-note {
+  margin: 16px;
+  color: var(--muted);
+  font-size: 12.5px;
+}
+
+.ws-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 8px 12px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.ws-title {
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 6px;
+  background: var(--subtle);
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.chip-key { color: var(--muted); }
+.chip-val { color: var(--fg); }
+
+.arrow { color: var(--muted); }
+
+.n { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.good { color: var(--good); }
+.bad { color: var(--bad); }
+.flat { color: var(--muted); }
+
+/* run controls: deliberately quiet, pushed to the right */
+select.runset {
+  max-width: 260px;
+  padding: 2px 6px;
+  border: 1px solid var(--border-strong);
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--fg);
+  font-size: 12px;
+}
+select.runset:disabled { color: var(--muted); }
+
+.ws-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: var(--inputs-h, 232px) auto auto minmax(0, 1fr);
+  gap: 6px;
+  padding: 8px;
+}
+.ws-body.single { grid-template-rows: minmax(0, 1fr); gap: 8px; }
+
+/* ------------------------------------------------------------ output area
+   The switcher (side by side | diff | stats) plus whichever view it selects.
+   Used by the eval view. */
+
+.out-area {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.out-view {
+  flex: 1 1 auto;
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+}
+.out-view > .panes,
+.out-view > .out-panel { flex: 1 1 auto; min-width: 0; }
+
+/* the diff and stats views share one card shell */
+.out-panel {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.out-panel-head {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 5px 10px;
+  background: var(--subtle);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.out-panel-body { flex: 1 1 auto; min-height: 0; overflow: auto; }
+.out-panel-body > .placeholder-note { margin: 12px 10px; }
+
+/* ------------------------------------------------------------ diff view */
+
+.diff-legend { display: inline-flex; align-items: baseline; gap: 5px; }
+.diff-sign { font-family: var(--mono); }
+
+.diff {
+  /* max-content keeps rows unwrapped: the body scrolls sideways instead */
+  min-width: max-content;
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.55;
+  padding: 6px 0;
+}
+
+.diff-row {
+  display: flex;
+  align-items: stretch;
+  white-space: pre;
+  tab-size: 2;
+}
+.diff-row.del { background: var(--del-bg); }
+.diff-row.add { background: var(--add-bg); }
+/* two gutters — baseline number, then skilled. A row that exists on one
+   side only leaves the other cell blank, the way every diff numbers them. */
+.diff-row .ln-num + .ln-num {
+  width: var(--ln-w-b, 2ch);
+  padding-left: 0;
+}
+.diff-row .diff-sign {
+  box-sizing: content-box;
+  flex: none;
+  width: 1.1em;
+  padding-left: 9px;
+  border-left: 1px solid var(--border);
+  color: var(--muted);
+}
+.diff-row .diff-text { flex: 0 0 auto; padding-right: 10px; }
+.diff-row.del .diff-sign { color: var(--bad); }
+.diff-row.add .diff-sign { color: var(--good); }
+
+/* ------------------------------------------------------------ output panes */
+
+.panes {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 8px;
+  min-height: 0;
+}
+
+.pane {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  background: var(--pane-bg, var(--surface));
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--pane-edge, var(--border));
+  border-radius: 5px;
+  overflow: hidden;
+}
+/* one variable set per variant, so the head, dot, strip, body and top border
+   all come from the same family and can never drift apart */
+.pane.baseline {
+  --pane-bg: var(--pane-base-bg);
+  --pane-sub: var(--pane-base-sub);
+  --pane-ink: var(--pane-base-ink);
+  --pane-dot: var(--pane-base-dot);
+  --pane-edge: var(--pane-base-edge);
+}
+.pane.skilled {
+  --pane-bg: var(--pane-skill-bg);
+  --pane-sub: var(--pane-skill-sub);
+  --pane-ink: var(--pane-skill-ink);
+  --pane-dot: var(--pane-skill-dot);
+  --pane-edge: var(--pane-skill-edge);
+}
+
+.pane-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  flex: none;
+  border-radius: 1px;
+  background: var(--pane-dot, var(--muted));
+}
+
+.pane-title {
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--pane-ink, var(--fg));
+}
+
+.pane-meta {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 60%;
+}
+
+/* metrics strip, inside each pane */
+.strip {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  padding: 5px 10px;
+  background: var(--pane-sub, var(--subtle));
+  border-bottom: 1px solid var(--border);
+}
+.strip-empty { font-size: 11px; color: var(--muted); }
+
+.metric {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  white-space: nowrap;
+}
+.metric-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--muted);
+}
+.metric-value {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 12px;
+}
+.metric-delta {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  opacity: 0.85;
+}
+
+pre.code {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-break: break-word;
+  tab-size: 2;
+}
+
+.output {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 10px;
+  overflow: auto;
+}
+.output.empty { color: var(--muted); font-family: var(--sans); font-size: 12px; }
+.output .stderr { color: var(--muted); }
+.output .err { color: var(--bad); }
+
+/* the `── name ──` line that separates concatenated context files */
+.ctx-divider { color: var(--muted); }
+
+/* ------------------------------------------------------------ tables */
+
+.table-wrap { overflow: auto; }
+
+table.stats-table,
+table.compare-table {
+  border-collapse: collapse;
+  font-size: 11.5px;
+}
+table.stats-table { margin: 10px; }
+table.compare-table { margin: 0; }
+
+table.stats-table th,
+table.stats-table td,
+table.compare-table th,
+table.compare-table td {
+  border: 1px solid var(--border);
+  padding: 3px 9px;
+  text-align: left;
+  white-space: nowrap;
+}
+table.stats-table thead th,
+table.compare-table thead th {
+  background: var(--subtle);
+  font-weight: 600;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--muted);
+}
+table.stats-table tbody th,
+table.compare-table tbody th {
+  background: var(--subtle);
+  font-weight: 500;
+  color: var(--fg);
+}
+table.stats-table td { font-variant-numeric: tabular-nums; }
+
+table.compare-table tbody th.row-head { font-family: var(--mono); font-size: 11px; }
+table.compare-table th.corner {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+.cell-pair { display: inline-flex; align-items: baseline; gap: 4px; }
+.cell-pct { font-family: var(--mono); font-size: 10.5px; margin-left: 6px; opacity: 0.85; }
+
+/* judge + slop hits inside the stats view */
+
+/* the judge is higher-is-better, the table above it is lower-is-better —
+   the heading exists purely to say so */
+.stats-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 12px 10px 4px;
+  border-top: 1px solid var(--border);
+  margin-top: 4px;
+}
+.stats-heading-title {
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--fg);
+}
+.stats-heading-note { font-size: 11px; color: var(--muted); }
+
+.judge-block {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  padding: 0 10px 2px;
+}
+.judge-line { display: inline-flex; align-items: baseline; gap: 5px; font-size: 11.5px; }
+.judge-axis { color: var(--muted); font-size: 11px; }
+
+.verdict {
+  margin: 4px 10px 0;
+  color: var(--muted);
+  font-size: 11.5px;
+  max-width: 90ch;
+}
+
+.hits-block {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 8px 10px 12px;
+}
+.hits { display: flex; gap: 8px; font-size: 11px; align-items: baseline; }
+.hits-label {
+  flex: none;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--muted);
+  min-width: 84px;
+}
+/* the same two hues the panes use — this is variant identity, not a verdict */
+.hits.baseline .hits-label { color: var(--pane-base-ink); }
+.hits.skilled .hits-label { color: var(--pane-skill-ink); }
+.hits-list { font-family: var(--mono); color: var(--fg); }
+
+/* ------------------------------------------------------------ comparison view */
+
+.compare-panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.compare-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--border);
+  background: var(--subtle);
+  flex: none;
+}
+
+.segmented {
+  display: inline-flex;
+  border: 1px solid var(--border-strong);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--surface);
+}
+.seg {
+  display: inline-flex;
+  align-items: center;
+  border-right: 1px solid var(--border);
+  cursor: pointer;
+}
+.seg:last-child { border-right: 0; }
+.seg input { position: absolute; opacity: 0; pointer-events: none; }
+.seg span {
+  padding: 2px 10px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+}
+.seg:hover span { color: var(--fg); }
+.seg input:checked + span { background: var(--accent-soft); color: var(--accent); }
+
+.hint {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--muted);
+}
+
+.compare-wrap { flex: 1 1 auto; min-height: 0; }
+
+/* ------------------------------------------------------------ line numbers
+   Every read-only monospace surface gets a left gutter. One row per logical
+   line, flex: a fixed-width number cell plus a content cell that wraps inside
+   itself — so a wrapped line keeps its number beside its first visual row and
+   the numbering never drifts. The number lives in `content: attr(data-ln)`,
+   so it is not in the DOM text at all and can never land in a copy. */
+
+.ln-num {
+  box-sizing: content-box;
+  flex: none;
+  width: var(--ln-w, 2ch);
+  padding: 0 8px 0 10px;
+  text-align: right;
+  color: var(--line-num);
+  font-variant-numeric: tabular-nums;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: default;
+}
+.ln-num::before { content: attr(data-ln); }
+
+.ln-row { display: flex; align-items: stretch; }
+
+.ln-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0 10px 0 9px;
+  border-left: 1px solid var(--border);
+}
+
+/* ------------------------------------------------------------ narrow */
+
+@media (max-width: 1000px) {
+  /* Two panes side by side stop being readable here, so they stack — and the
+     workspace keeps the desktop row template: inputs, band, outputs. */
+  .panes { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 720px) {
+  .app { grid-template-columns: 180px minmax(0, 1fr); }
+}
+
+/* ------------------------------------------------------------ inputs
+   The three composed inputs, always all three and always in composition
+   order: prompt, skill, context. Sits above the outputs it explains. */
+
+.inputs {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+}
+
+/* Each input takes a weighted share of the region and scrolls inside it, so all
+   three labels stay on screen at any split. flex-grow is set per section in JS
+   from its line count. */
+.input-sec {
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-sec + .input-sec { border-top: 1px solid var(--border); }
+
+.input-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+}
+
+/* Sticky, so scrolling a long skill never loses which input you are reading. */
+.input-head {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  flex: none; /* a small share must still show its label in full */
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 5px 10px;
+  border-bottom: 1px solid var(--border);
+  background: var(--subtle);
+}
+
+.input-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--fg);
+}
+
+.input-src,
+.input-counts {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.input-body { padding: 6px 10px; }
+.input-body.lined { padding-left: 0; }
+
+/* ------------------------------------------------------------ summary band
+   The headline metrics, visible in every output view — reading the numbers
+   must never require switching to the stats view. */
+
+.summary {
+  flex: none;
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+/* The verdict cell: one number, its own label, on the left where reading
+   starts — the summary of the six boxes that follow it. */
+.sum-call {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1px;
+  padding: 6px 12px;
+  min-width: 92px;
+  background: var(--subtle);
+  border-right: 1px solid var(--border);
+}
+
+.sum-title {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.sum-note {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* The call the numbers make: metrics improved minus metrics worsened. Signed,
+   so a negative reading — the skill losing — is as legible as a win. */
+.sum-verdict {
+  font-family: var(--mono);
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.sum-verdict:empty::before { content: "—"; color: var(--muted); }
+
+.sum-boxes {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(126px, 1fr));
+  gap: 4px 6px;
+  padding: 6px 10px 6px 0;
+  align-content: center;
+}
+
+.sbox {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 3px 8px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg);
+}
+
+.sbox-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.sbox-pair { display: inline-flex; align-items: baseline; gap: 4px; }
+
+.sbox-n {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.sbox-n.strong { color: var(--fg); font-weight: 600; }
+.sbox-arrow { font-family: var(--mono); font-size: 10px; color: var(--border-strong, var(--muted)); }
+
+.sbox-delta {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  min-width: 0;
+}
+
+.sum-boxes .placeholder-note { margin: 0; }
+
+@media (max-width: 1000px) {
+  .summary { flex-wrap: wrap; }
+  .sum-call {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: flex-start;
+    gap: 8px;
+    width: 100%;
+    padding: 4px 10px;
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .sum-verdict { font-size: 18px; line-height: 1; }
+  .sum-boxes { padding: 6px 10px; }
+  .inputs { max-height: 30vh; }
+}
+
+/* ------------------------------------------------------------ splitter
+   The inputs/outputs split is the reader's call. A real separator: draggable,
+   keyboard-adjustable, and wide enough to grab without stealing layout. */
+
+.splitter {
+  height: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: row-resize;
+  border-radius: 3px;
+  touch-action: none;
+}
+
+/* the grip: a hairline that thickens on hover, so the affordance is visible
+   without drawing a bar across the workspace */
+.splitter::before {
+  content: "";
+  width: 46px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--border);
+  transition: background 80ms linear;
+}
+
+.splitter:hover::before,
+.splitter:focus-visible::before,
+.splitter.dragging::before { background: var(--muted); }
+.splitter:focus-visible { outline: 0; }
+.splitter.dragging { background: var(--subtle); }
