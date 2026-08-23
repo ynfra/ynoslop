@@ -1,0 +1,12 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gpt-5.6-terra",
+  "skills": [
+    "attention-rundown"
+  ],
+  "recorded": "2026-08-22T21:36:31.416Z",
+  "ms": {
+    "bare": 6899,
+    "skilled": 5377
+  }
+}

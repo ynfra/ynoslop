@@ -1,0 +1,1 @@
+{"A":{"puffery":5,"filler":4,"concreteness":5},"B":{"puffery":5,"filler":2,"concreteness":5},"verdict":"A is substantially leaner, while B duplicates the article and adds unnecessary drafting commentary."}

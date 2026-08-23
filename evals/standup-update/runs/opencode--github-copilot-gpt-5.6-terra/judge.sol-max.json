@@ -1,0 +1,17 @@
+{
+  "hash": "972d6bb4f009f621",
+  "order": "skilled-first",
+  "scores": {
+    "bare": {
+      "puffery": 5,
+      "filler": 5,
+      "concreteness": 5
+    },
+    "skilled": {
+      "puffery": 4,
+      "filler": 3,
+      "concreteness": 5
+    }
+  },
+  "verdict": "bare is more direct and avoids skilled's repeated summary, emojis, and performative calls to action."
+}

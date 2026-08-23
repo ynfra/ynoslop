@@ -1,0 +1,17 @@
+{
+  "hash": "6945f42ff6981f3b",
+  "order": "skilled-first",
+  "scores": {
+    "bare": {
+      "puffery": 5,
+      "filler": 4,
+      "concreteness": 5
+    },
+    "skilled": {
+      "puffery": 5,
+      "filler": 5,
+      "concreteness": 5
+    }
+  },
+  "verdict": "skilled is leaner, while both are concrete and free of puffery but invent default-output behavior."
+}

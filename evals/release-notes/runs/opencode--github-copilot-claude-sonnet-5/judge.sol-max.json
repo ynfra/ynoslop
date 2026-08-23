@@ -1,0 +1,17 @@
+{
+  "hash": "8281cb0ecb98105d",
+  "order": "skilled-first",
+  "scores": {
+    "bare": {
+      "puffery": 5,
+      "filler": 4,
+      "concreteness": 5
+    },
+    "skilled": {
+      "puffery": 5,
+      "filler": 5,
+      "concreteness": 5
+    }
+  },
+  "verdict": "skilled is tighter than bare, which unnecessarily repeats the migration warning."
+}

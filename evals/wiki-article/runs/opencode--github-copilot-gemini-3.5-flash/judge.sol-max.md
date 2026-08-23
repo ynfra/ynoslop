@@ -1,0 +1,1 @@
+{"A":{"puffery":5,"filler":1,"concreteness":5},"B":{"puffery":5,"filler":4,"concreteness":5},"verdict":"B is substantially less repetitive and filler-heavy, while both are concrete and free of puffery."}

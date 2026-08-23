@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gpt-5.6-terra",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:36:00.257Z",
+  "ms": {
+    "bare": 9168,
+    "skilled": 6778
+  },
+  "metrics": {
+    "bare": {
+      "lines": 25,
+      "chars": 950,
+      "words": 149,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 7,
+      "headings": 5,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 17,
+      "chars": 848,
+      "words": 126,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 3,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "059061b1aa0ace9a",
+      "order": "bare-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 4,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        }
+      },
+      "verdict": "skilled is slightly leaner, while both responses are concrete and free of puffery."
+    }
+  }
+}

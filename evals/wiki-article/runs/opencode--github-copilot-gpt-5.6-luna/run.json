@@ -1,0 +1,12 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gpt-5.6-luna",
+  "skills": [
+    "humanizer"
+  ],
+  "recorded": "2026-08-22T21:38:48.311Z",
+  "ms": {
+    "bare": 5795,
+    "skilled": 6071
+  }
+}

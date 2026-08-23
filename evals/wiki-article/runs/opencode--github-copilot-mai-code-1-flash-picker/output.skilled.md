@@ -1,0 +1,3 @@
+Klub výpočetní techniky Královo Pole (KVT Královo Pole) was founded in 1974 as a hobby section of the local ROH culture house in the Královo Pole district of Brno, Czechoslovakia. The club had about 40 members at its peak in 1979, but roughly a dozen members for most of its life.
+
+The club is best known for its project Kalkul 3, an 8-bit machine built in 1978 from surplus Tesla MHB8080 parts. It was used by the city transport company to check tram timetable schedules, and three units were built. The club was dissolved in 1983 when the culture house withdrew the room. Papers of the club and one surviving Kalkul 3 board are held by the Moravian Technical Museum in Brno in fond KM-14.

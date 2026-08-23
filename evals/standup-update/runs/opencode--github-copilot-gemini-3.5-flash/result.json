@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gemini-3.5-flash",
+  "skills": [
+    "attention-rundown"
+  ],
+  "recorded": "2026-08-22T21:45:07.366Z",
+  "ms": {
+    "bare": 8482,
+    "skilled": 17790
+  },
+  "metrics": {
+    "bare": {
+      "lines": 11,
+      "chars": 658,
+      "words": 102,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 6,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 13,
+      "chars": 817,
+      "words": 121,
+      "slopWords": 0,
+      "emoji": 8,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "8c5c7aea4866921f",
+      "order": "bare-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 4,
+          "filler": 3,
+          "concreteness": 5
+        }
+      },
+      "verdict": "bare is leaner and equally concrete, while skilled repeats key points and adds performative framing."
+    }
+  }
+}

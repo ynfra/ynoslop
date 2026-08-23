@@ -1,0 +1,12 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gemini-3.5-flash",
+  "skills": [
+    "attention-spartan"
+  ],
+  "recorded": "2026-08-22T21:42:46.076Z",
+  "ms": {
+    "bare": 9932,
+    "skilled": 6652
+  }
+}

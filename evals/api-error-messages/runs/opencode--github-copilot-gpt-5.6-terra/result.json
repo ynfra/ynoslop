@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gpt-5.6-terra",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:35:17.589Z",
+  "ms": {
+    "bare": 21911,
+    "skilled": 5411
+  },
+  "metrics": {
+    "bare": {
+      "lines": 24,
+      "chars": 692,
+      "words": 112,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 24,
+      "chars": 510,
+      "words": 80,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "fe63a8f02aa06971",
+      "order": "skilled-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 4,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        }
+      },
+      "verdict": "skilled is less sloppy because bare adds an irrelevant process preamble."
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "hash": "cb11efb61d7d6d20",
+  "order": "skilled-first",
+  "scores": {
+    "bare": {
+      "puffery": 5,
+      "filler": 5,
+      "concreteness": 5
+    },
+    "skilled": {
+      "puffery": 5,
+      "filler": 5,
+      "concreteness": 4
+    }
+  },
+  "verdict": "bare is slightly more concrete by naming exponential backoff and jitter."
+}

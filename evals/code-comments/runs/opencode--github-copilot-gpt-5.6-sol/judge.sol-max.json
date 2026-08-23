@@ -1,0 +1,17 @@
+{
+  "hash": "ab80e4ebd2b62705",
+  "order": "bare-first",
+  "scores": {
+    "bare": {
+      "puffery": 5,
+      "filler": 5,
+      "concreteness": 4
+    },
+    "skilled": {
+      "puffery": 5,
+      "filler": 5,
+      "concreteness": 5
+    }
+  },
+  "verdict": "skilled is slightly more concrete by quantifying the jitter and identifying the most recent error."
+}

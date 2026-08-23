@@ -1,0 +1,12 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gpt-5-mini",
+  "skills": [
+    "attention-spartan"
+  ],
+  "recorded": "2026-08-22T21:49:34.710Z",
+  "ms": {
+    "bare": 9218,
+    "skilled": 18421
+  }
+}

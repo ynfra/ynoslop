@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gemini-3.5-flash",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:41:57.910Z",
+  "ms": {
+    "bare": 24234,
+    "skilled": 14600
+  },
+  "metrics": {
+    "bare": {
+      "lines": 30,
+      "chars": 679,
+      "words": 105,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 17,
+      "chars": 494,
+      "words": 82,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "d419cabe1886568f",
+      "order": "skilled-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 4,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        }
+      },
+      "verdict": "skilled is slightly leaner, while both responses are highly concrete and free of puffery."
+    }
+  }
+}

@@ -1,0 +1,1 @@
+{"A":{"puffery":4,"filler":5,"concreteness":5},"B":{"puffery":3,"filler":4,"concreteness":5},"verdict":"A is leaner and more concrete, while B adds more promotional phrasing and repeats its recommendation."}

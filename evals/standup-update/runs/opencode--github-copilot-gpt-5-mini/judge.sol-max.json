@@ -1,0 +1,17 @@
+{
+  "hash": "361abed1c3130a0e",
+  "order": "skilled-first",
+  "scores": {
+    "bare": {
+      "puffery": 5,
+      "filler": 5,
+      "concreteness": 5
+    },
+    "skilled": {
+      "puffery": 4,
+      "filler": 2,
+      "concreteness": 5
+    }
+  },
+  "verdict": "bare is more concise and faithful, while skilled adds repetition, decorative framing, and unsupported action items."
+}

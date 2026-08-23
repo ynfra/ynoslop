@@ -1,0 +1,74 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gemini-3.5-flash",
+  "skills": [
+    "humanizer"
+  ],
+  "recorded": "2026-08-22T21:45:30.688Z",
+  "ms": {
+    "bare": 10216,
+    "skilled": 13106
+  },
+  "metrics": {
+    "bare": {
+      "lines": 10,
+      "chars": 930,
+      "words": 158,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 3,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 36,
+      "chars": 2064,
+      "words": 335,
+      "slopWords": 4,
+      "emoji": 0,
+      "bullets": 6,
+      "headings": 3,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": [
+        {
+          "term": "crucial",
+          "count": 1
+        },
+        {
+          "term": "pivotal",
+          "count": 1
+        },
+        {
+          "term": "testament",
+          "count": 1
+        },
+        {
+          "term": "vibrant",
+          "count": 1
+        }
+      ]
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "c585a9761fad955c",
+      "order": "skilled-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 4,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 1,
+          "concreteness": 5
+        }
+      },
+      "verdict": "bare is substantially less repetitive and filler-heavy, while both are concrete and free of puffery."
+    }
+  }
+}

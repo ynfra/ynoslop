@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gemini-3.5-flash",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:42:29.489Z",
+  "ms": {
+    "bare": 12555,
+    "skilled": 19022
+  },
+  "metrics": {
+    "bare": {
+      "lines": 29,
+      "chars": 1141,
+      "words": 176,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 6,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 31,
+      "chars": 1142,
+      "words": 191,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 9,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "312d43165d15d700",
+      "order": "bare-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 4,
+          "concreteness": 4
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 3,
+          "concreteness": 5
+        }
+      },
+      "verdict": "bare is leaner, while skilled is more concrete but repeats behavior already evident from the code."
+    }
+  }
+}

@@ -1,0 +1,1 @@
+{"A":{"puffery":4,"filler":2,"concreteness":5},"B":{"puffery":5,"filler":5,"concreteness":5},"verdict":"B is more concise and faithful, while A adds repetition, decorative framing, and unsupported action items."}

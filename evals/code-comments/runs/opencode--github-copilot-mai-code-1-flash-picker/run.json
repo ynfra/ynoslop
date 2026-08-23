@@ -1,0 +1,12 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/mai-code-1-flash-picker",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:46:02.646Z",
+  "ms": {
+    "bare": 6438,
+    "skilled": 6655
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/claude-sonnet-5",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:30:50.889Z",
+  "ms": {
+    "bare": 7330,
+    "skilled": 7033
+  },
+  "metrics": {
+    "bare": {
+      "lines": 33,
+      "chars": 1357,
+      "words": 223,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 7,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 30,
+      "chars": 1119,
+      "words": 184,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 6,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "4d6a03ebae976f49",
+      "order": "skilled-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 3,
+          "concreteness": 4
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        }
+      },
+      "verdict": "skilled is more concise and concrete, while bare adds redundant comments for self-explanatory operations."
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "hash": "c585a9761fad955c",
+  "order": "skilled-first",
+  "scores": {
+    "bare": {
+      "puffery": 5,
+      "filler": 4,
+      "concreteness": 5
+    },
+    "skilled": {
+      "puffery": 5,
+      "filler": 1,
+      "concreteness": 5
+    }
+  },
+  "verdict": "bare is substantially less repetitive and filler-heavy, while both are concrete and free of puffery."
+}

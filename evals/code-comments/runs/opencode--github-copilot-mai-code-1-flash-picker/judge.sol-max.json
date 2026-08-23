@@ -1,0 +1,17 @@
+{
+  "hash": "ce0523d09a5526b4",
+  "order": "skilled-first",
+  "scores": {
+    "bare": {
+      "puffery": 5,
+      "filler": 3,
+      "concreteness": 4
+    },
+    "skilled": {
+      "puffery": 5,
+      "filler": 4,
+      "concreteness": 5
+    }
+  },
+  "verdict": "skilled is more concise and concrete, explicitly identifying jitter while avoiding bare's redundant success comment."
+}

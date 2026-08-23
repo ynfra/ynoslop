@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gpt-5.6-sol",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:39:24.000Z",
+  "ms": {
+    "bare": 5611,
+    "skilled": 7114
+  },
+  "metrics": {
+    "bare": {
+      "lines": 22,
+      "chars": 580,
+      "words": 93,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 22,
+      "chars": 590,
+      "words": 96,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "ab80e4ebd2b62705",
+      "order": "bare-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 4
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        }
+      },
+      "verdict": "skilled is slightly more concrete by quantifying the jitter and identifying the most recent error."
+    }
+  }
+}

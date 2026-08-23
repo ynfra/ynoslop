@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/mai-code-1-flash-picker",
+  "skills": [
+    "attention-spartan"
+  ],
+  "recorded": "2026-08-22T21:46:15.422Z",
+  "ms": {
+    "bare": 6922,
+    "skilled": 5852
+  },
+  "metrics": {
+    "bare": {
+      "lines": 3,
+      "chars": 214,
+      "words": 33,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 1,
+      "chars": 74,
+      "words": 9,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "f0bf1448c8d7df95",
+      "order": "skilled-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        }
+      },
+      "verdict": "Both are concise and concrete, but bare captures the rename rationale as well as the bug fix."
+    }
+  }
+}

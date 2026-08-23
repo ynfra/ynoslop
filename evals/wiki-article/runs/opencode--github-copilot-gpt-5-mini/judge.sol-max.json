@@ -1,0 +1,17 @@
+{
+  "hash": "f99a9b01c0fb5165",
+  "order": "bare-first",
+  "scores": {
+    "bare": {
+      "puffery": 5,
+      "filler": 4,
+      "concreteness": 5
+    },
+    "skilled": {
+      "puffery": 5,
+      "filler": 2,
+      "concreteness": 5
+    }
+  },
+  "verdict": "bare is substantially leaner, while skilled duplicates the article and adds unnecessary drafting commentary."
+}

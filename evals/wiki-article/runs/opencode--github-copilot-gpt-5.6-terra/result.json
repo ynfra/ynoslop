@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gpt-5.6-terra",
+  "skills": [
+    "humanizer"
+  ],
+  "recorded": "2026-08-22T21:36:48.471Z",
+  "ms": {
+    "bare": 11028,
+    "skilled": 6026
+  },
+  "metrics": {
+    "bare": {
+      "lines": 6,
+      "chars": 736,
+      "words": 123,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 9,
+      "chars": 733,
+      "words": 128,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 1,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "9c99ba90ec8177e3",
+      "order": "bare-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 4,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        }
+      },
+      "verdict": "skilled is cleaner because bare includes an unrelated process-narration sentence."
+    }
+  }
+}

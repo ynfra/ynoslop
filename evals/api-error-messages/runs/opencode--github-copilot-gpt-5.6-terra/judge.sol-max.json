@@ -1,0 +1,17 @@
+{
+  "hash": "fe63a8f02aa06971",
+  "order": "skilled-first",
+  "scores": {
+    "bare": {
+      "puffery": 5,
+      "filler": 4,
+      "concreteness": 5
+    },
+    "skilled": {
+      "puffery": 5,
+      "filler": 5,
+      "concreteness": 5
+    }
+  },
+  "verdict": "skilled is less sloppy because bare adds an irrelevant process preamble."
+}

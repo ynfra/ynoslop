@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/claude-sonnet-5",
+  "skills": [
+    "attention-spartan"
+  ],
+  "recorded": "2026-08-22T21:31:00.976Z",
+  "ms": {
+    "bare": 4927,
+    "skilled": 5157
+  },
+  "metrics": {
+    "bare": {
+      "lines": 9,
+      "chars": 405,
+      "words": 67,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 1,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 7,
+      "chars": 476,
+      "words": 76,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "36ba223a38a456b0",
+      "order": "skilled-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 4,
+          "concreteness": 5
+        }
+      },
+      "verdict": "bare is more concise, while both are concrete and free of puffery."
+    }
+  }
+}

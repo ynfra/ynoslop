@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gpt-5.6-terra",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:36:19.138Z",
+  "ms": {
+    "bare": 8533,
+    "skilled": 10345
+  },
+  "metrics": {
+    "bare": {
+      "lines": 11,
+      "chars": 2204,
+      "words": 292,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 13,
+      "chars": 2191,
+      "words": 315,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "663c5fa70aa99e14",
+      "order": "bare-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 4,
+          "concreteness": 4
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        }
+      },
+      "verdict": "skilled is more concise and concrete, especially on authentication, connection limits, heartbeats, and reconnection behavior."
+    }
+  }
+}

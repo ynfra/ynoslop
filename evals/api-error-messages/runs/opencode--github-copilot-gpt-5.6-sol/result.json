@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gpt-5.6-sol",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:39:11.273Z",
+  "ms": {
+    "bare": 10454,
+    "skilled": 12474
+  },
+  "metrics": {
+    "bare": {
+      "lines": 27,
+      "chars": 596,
+      "words": 99,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 28,
+      "chars": 583,
+      "words": 97,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "6adc9455a103567a",
+      "order": "skilled-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 4,
+          "concreteness": 5
+        }
+      },
+      "verdict": "bare is slightly tighter, while both are concrete and free of puffery."
+    }
+  }
+}

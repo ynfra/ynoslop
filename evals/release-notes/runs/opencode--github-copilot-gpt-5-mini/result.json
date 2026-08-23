@@ -1,0 +1,62 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gpt-5-mini",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:51:00.590Z",
+  "ms": {
+    "bare": 14229,
+    "skilled": 30323
+  },
+  "metrics": {
+    "bare": {
+      "lines": 52,
+      "chars": 2816,
+      "words": 456,
+      "slopWords": 1,
+      "emoji": 0,
+      "bullets": 33,
+      "headings": 8,
+      "exclamations": 0,
+      "emDashes": 9,
+      "hits": [
+        {
+          "term": "robust",
+          "count": 1
+        }
+      ]
+    },
+    "skilled": {
+      "lines": 14,
+      "chars": 1038,
+      "words": 171,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 5,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "5f37c1a4b765d4ac",
+      "order": "bare-first",
+      "scores": {
+        "bare": {
+          "puffery": 4,
+          "filler": 3,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        }
+      },
+      "verdict": "skilled is more concise and avoids bare's repeated highlights, upgrade guidance, and unsupported details."
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/claude-sonnet-5",
+  "skills": [
+    "humanizer"
+  ],
+  "recorded": "2026-08-22T21:32:24.836Z",
+  "ms": {
+    "bare": 6695,
+    "skilled": 7401
+  },
+  "metrics": {
+    "bare": {
+      "lines": 17,
+      "chars": 984,
+      "words": 161,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 4,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 13,
+      "chars": 917,
+      "words": 152,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "cc814817cb5df343",
+      "order": "bare-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 3,
+          "concreteness": 5
+        }
+      },
+      "verdict": "bare is cleaner because skilled adds an unnecessary meta-commentary section."
+    }
+  }
+}

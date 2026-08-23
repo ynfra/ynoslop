@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gpt-5.6-sol",
+  "skills": [
+    "attention-rundown"
+  ],
+  "recorded": "2026-08-22T21:40:53.827Z",
+  "ms": {
+    "bare": 5984,
+    "skilled": 8374
+  },
+  "metrics": {
+    "bare": {
+      "lines": 13,
+      "chars": 700,
+      "words": 113,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 6,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 17,
+      "chars": 821,
+      "words": 134,
+      "slopWords": 0,
+      "emoji": 7,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 7,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "153e7d2329b6d52b",
+      "order": "bare-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 4,
+          "filler": 3,
+          "concreteness": 5
+        }
+      },
+      "verdict": "bare is more concise and professional, while skilled adds a redundant summary and performative formatting."
+    }
+  }
+}

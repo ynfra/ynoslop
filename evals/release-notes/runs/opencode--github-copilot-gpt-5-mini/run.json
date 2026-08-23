@@ -1,0 +1,12 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gpt-5-mini",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:51:00.590Z",
+  "ms": {
+    "bare": 14229,
+    "skilled": 30323
+  }
+}

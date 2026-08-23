@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/mai-code-1-flash-picker",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:47:34.207Z",
+  "ms": {
+    "bare": 6243,
+    "skilled": 6958
+  },
+  "metrics": {
+    "bare": {
+      "lines": 5,
+      "chars": 1448,
+      "words": 224,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 3,
+      "chars": 1456,
+      "words": 223,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "74a2942243414470",
+      "order": "skilled-first",
+      "scores": {
+        "bare": {
+          "puffery": 4,
+          "filler": 3,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 4,
+          "concreteness": 4
+        }
+      },
+      "verdict": "skilled is leaner and less promotional, while bare adds more concrete operational details but repeats itself more."
+    }
+  }
+}

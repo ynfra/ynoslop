@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gpt-5.6-sol",
+  "skills": [
+    "humanizer"
+  ],
+  "recorded": "2026-08-22T21:41:19.035Z",
+  "ms": {
+    "bare": 7385,
+    "skilled": 17822
+  },
+  "metrics": {
+    "bare": {
+      "lines": 5,
+      "chars": 640,
+      "words": 112,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 19,
+      "chars": 1393,
+      "words": 235,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 3,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "93a749881f8f7772",
+      "order": "bare-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 2,
+          "concreteness": 5
+        }
+      },
+      "verdict": "bare is equally concrete and restrained but avoids skilled's redundant draft and meta-commentary."
+    }
+  }
+}

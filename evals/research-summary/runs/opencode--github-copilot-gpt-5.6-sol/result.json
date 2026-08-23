@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gpt-5.6-sol",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:40:39.466Z",
+  "ms": {
+    "bare": 12642,
+    "skilled": 14706
+  },
+  "metrics": {
+    "bare": {
+      "lines": 7,
+      "chars": 1953,
+      "words": 256,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 13,
+      "chars": 2103,
+      "words": 287,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 1,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "03c88cd456ab29e6",
+      "order": "skilled-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 3,
+          "concreteness": 4
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        }
+      },
+      "verdict": "skilled is more concrete and concise, while bare repeats its recommendation and relies more on broad operational claims."
+    }
+  }
+}

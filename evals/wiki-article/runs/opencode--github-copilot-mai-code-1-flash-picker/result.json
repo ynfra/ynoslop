@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/mai-code-1-flash-picker",
+  "skills": [
+    "humanizer"
+  ],
+  "recorded": "2026-08-22T21:48:05.894Z",
+  "ms": {
+    "bare": 6840,
+    "skilled": 6865
+  },
+  "metrics": {
+    "bare": {
+      "lines": 3,
+      "chars": 715,
+      "words": 127,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 3,
+      "chars": 690,
+      "words": 125,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "b228d1d2839d74ec",
+      "order": "skilled-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        }
+      },
+      "verdict": "Both responses are equally concise, restrained, and factually concrete."
+    }
+  }
+}

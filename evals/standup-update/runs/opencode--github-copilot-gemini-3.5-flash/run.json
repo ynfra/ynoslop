@@ -1,0 +1,12 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gemini-3.5-flash",
+  "skills": [
+    "attention-rundown"
+  ],
+  "recorded": "2026-08-22T21:45:07.366Z",
+  "ms": {
+    "bare": 8482,
+    "skilled": 17790
+  }
+}

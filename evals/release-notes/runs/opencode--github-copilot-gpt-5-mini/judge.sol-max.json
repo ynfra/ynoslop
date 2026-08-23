@@ -1,0 +1,17 @@
+{
+  "hash": "5f37c1a4b765d4ac",
+  "order": "bare-first",
+  "scores": {
+    "bare": {
+      "puffery": 4,
+      "filler": 3,
+      "concreteness": 5
+    },
+    "skilled": {
+      "puffery": 5,
+      "filler": 5,
+      "concreteness": 5
+    }
+  },
+  "verdict": "skilled is more concise and avoids bare's repeated highlights, upgrade guidance, and unsupported details."
+}

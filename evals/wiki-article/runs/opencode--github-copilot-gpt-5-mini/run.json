@@ -1,0 +1,12 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gpt-5-mini",
+  "skills": [
+    "humanizer"
+  ],
+  "recorded": "2026-08-22T21:53:03.671Z",
+  "ms": {
+    "bare": 18656,
+    "skilled": 24783
+  }
+}

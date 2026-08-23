@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gemini-3.5-flash",
+  "skills": [
+    "attention-spartan"
+  ],
+  "recorded": "2026-08-22T21:42:46.076Z",
+  "ms": {
+    "bare": 9932,
+    "skilled": 6652
+  },
+  "metrics": {
+    "bare": {
+      "lines": 8,
+      "chars": 390,
+      "words": 57,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 3,
+      "chars": 310,
+      "words": 44,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "9ca4fce40db10a7b",
+      "order": "bare-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        }
+      },
+      "verdict": "Both are concise and concrete, with no meaningful slop."
+    }
+  }
+}

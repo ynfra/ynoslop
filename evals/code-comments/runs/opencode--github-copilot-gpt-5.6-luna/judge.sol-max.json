@@ -1,0 +1,17 @@
+{
+  "hash": "1e91e8e876c2bf3e",
+  "order": "bare-first",
+  "scores": {
+    "bare": {
+      "puffery": 5,
+      "filler": 5,
+      "concreteness": 5
+    },
+    "skilled": {
+      "puffery": 5,
+      "filler": 5,
+      "concreteness": 5
+    }
+  },
+  "verdict": "Both are equally concise, concrete, and free of puffery."
+}

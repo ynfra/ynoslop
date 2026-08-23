@@ -1,0 +1,17 @@
+{
+  "hash": "f0bf1448c8d7df95",
+  "order": "skilled-first",
+  "scores": {
+    "bare": {
+      "puffery": 5,
+      "filler": 5,
+      "concreteness": 5
+    },
+    "skilled": {
+      "puffery": 5,
+      "filler": 5,
+      "concreteness": 5
+    }
+  },
+  "verdict": "Both are concise and concrete, but bare captures the rename rationale as well as the bug fix."
+}

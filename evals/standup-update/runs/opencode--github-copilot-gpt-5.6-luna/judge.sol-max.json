@@ -1,0 +1,17 @@
+{
+  "hash": "ff49269e15ea7713",
+  "order": "bare-first",
+  "scores": {
+    "bare": {
+      "puffery": 5,
+      "filler": 5,
+      "concreteness": 5
+    },
+    "skilled": {
+      "puffery": 4,
+      "filler": 3,
+      "concreteness": 5
+    }
+  },
+  "verdict": "bare is cleaner and more direct, while skilled adds decorative formatting and repeats conclusions despite remaining concrete."
+}

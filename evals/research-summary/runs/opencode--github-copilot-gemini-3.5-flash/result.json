@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gemini-3.5-flash",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:44:41.092Z",
+  "ms": {
+    "bare": 11437,
+    "skilled": 27998
+  },
+  "metrics": {
+    "bare": {
+      "lines": 18,
+      "chars": 2218,
+      "words": 285,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 10,
+      "headings": 4,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 9,
+      "chars": 1693,
+      "words": 242,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 2,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "c972d9bfe61bcbf6",
+      "order": "skilled-first",
+      "scores": {
+        "bare": {
+          "puffery": 3,
+          "filler": 4,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 4,
+          "filler": 5,
+          "concreteness": 5
+        }
+      },
+      "verdict": "skilled is leaner and more concrete, while bare adds more promotional phrasing and repeats its recommendation."
+    }
+  }
+}

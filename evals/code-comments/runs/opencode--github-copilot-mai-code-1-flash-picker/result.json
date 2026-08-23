@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/mai-code-1-flash-picker",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:46:02.646Z",
+  "ms": {
+    "bare": 6438,
+    "skilled": 6655
+  },
+  "metrics": {
+    "bare": {
+      "lines": 25,
+      "chars": 789,
+      "words": 128,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 24,
+      "chars": 748,
+      "words": 122,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "ce0523d09a5526b4",
+      "order": "skilled-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 3,
+          "concreteness": 4
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 4,
+          "concreteness": 5
+        }
+      },
+      "verdict": "skilled is more concise and concrete, explicitly identifying jitter while avoiding bare's redundant success comment."
+    }
+  }
+}

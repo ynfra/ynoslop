@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/mai-code-1-flash-picker",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:47:21.003Z",
+  "ms": {
+    "bare": 14566,
+    "skilled": 7541
+  },
+  "metrics": {
+    "bare": {
+      "lines": 26,
+      "chars": 1020,
+      "words": 174,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 11,
+      "headings": 5,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 11,
+      "chars": 980,
+      "words": 166,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 5,
+      "headings": 2,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "98fef85dc31becd5",
+      "order": "bare-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 4,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        }
+      },
+      "verdict": "skilled is more concise, while both are concrete and free of puffery."
+    }
+  }
+}

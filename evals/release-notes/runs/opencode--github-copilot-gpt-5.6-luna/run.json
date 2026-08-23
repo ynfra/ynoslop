@@ -1,0 +1,12 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gpt-5.6-luna",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:38:10.517Z",
+  "ms": {
+    "bare": 5714,
+    "skilled": 5926
+  }
+}

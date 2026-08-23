@@ -1,0 +1,12 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gpt-5.6-terra",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:36:00.257Z",
+  "ms": {
+    "bare": 9168,
+    "skilled": 6778
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "hash": "a916ac70570940f7",
+  "order": "bare-first",
+  "scores": {
+    "bare": {
+      "puffery": 5,
+      "filler": 5,
+      "concreteness": 5
+    },
+    "skilled": {
+      "puffery": 5,
+      "filler": 3,
+      "concreteness": 5
+    }
+  },
+  "verdict": "bare is tighter, while skilled repeats key points in the TL;DR and action list."
+}

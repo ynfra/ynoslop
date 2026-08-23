@@ -1,0 +1,12 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/claude-sonnet-5",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:31:17.382Z",
+  "ms": {
+    "bare": 9301,
+    "skilled": 7104
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gpt-5.6-terra",
+  "skills": [
+    "attention-rundown"
+  ],
+  "recorded": "2026-08-22T21:36:31.416Z",
+  "ms": {
+    "bare": 6899,
+    "skilled": 5377
+  },
+  "metrics": {
+    "bare": {
+      "lines": 6,
+      "chars": 614,
+      "words": 101,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 6,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 13,
+      "chars": 825,
+      "words": 121,
+      "slopWords": 0,
+      "emoji": 9,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "972d6bb4f009f621",
+      "order": "skilled-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 4,
+          "filler": 3,
+          "concreteness": 5
+        }
+      },
+      "verdict": "bare is more direct and avoids skilled's repeated summary, emojis, and performative calls to action."
+    }
+  }
+}

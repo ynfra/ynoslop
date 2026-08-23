@@ -1,0 +1,6 @@
+- Completed S3 → R2 migration script and ran it on staging: 412k objects copied, all checksums match.
+- Merged auth cookie SameSite fix yesterday (PR 812).
+- Ported 7 of 14 invoice PDF templates; the Czech VAT template is still fiddly due to rounding rules.
+- Webhook retry queue skeleton works end to end; dead-letter handling is still missing.
+- Reporting-query task is blocked pending prod read-replica credentials from infra. Asked Tuesday and Thursday, no reply yet.
+- Need a decision on continued Node 18 SDK support. Dropping it would allow native `fetch`, but two customers are pinned to Node 18.

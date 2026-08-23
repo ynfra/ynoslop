@@ -1,0 +1,12 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gemini-3.5-flash",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:41:57.910Z",
+  "ms": {
+    "bare": 24234,
+    "skilled": 14600
+  }
+}

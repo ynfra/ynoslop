@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/mai-code-1-flash-picker",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:45:49.551Z",
+  "ms": {
+    "bare": 9411,
+    "skilled": 9412
+  },
+  "metrics": {
+    "bare": {
+      "lines": 11,
+      "chars": 548,
+      "words": 92,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 19,
+      "chars": 597,
+      "words": 101,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "7d4c0746584f3786",
+      "order": "bare-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 4
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        }
+      },
+      "verdict": "skilled is slightly more concrete and faithful, while both avoid puffery and filler."
+    }
+  }
+}

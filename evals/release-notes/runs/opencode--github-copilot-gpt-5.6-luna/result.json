@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gpt-5.6-luna",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:38:10.517Z",
+  "ms": {
+    "bare": 5714,
+    "skilled": 5926
+  },
+  "metrics": {
+    "bare": {
+      "lines": 19,
+      "chars": 816,
+      "words": 135,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 6,
+      "headings": 5,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 22,
+      "chars": 849,
+      "words": 132,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 2,
+      "headings": 5,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "d3b31259b1c0afec",
+      "order": "skilled-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 4,
+          "concreteness": 5
+        }
+      },
+      "verdict": "bare is slightly tighter because skilled adds the unnecessary sentence about following v2.0.4."
+    }
+  }
+}

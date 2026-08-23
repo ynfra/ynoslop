@@ -1,0 +1,17 @@
+{
+  "hash": "40a7b5563a8231f9",
+  "order": "skilled-first",
+  "scores": {
+    "bare": {
+      "puffery": 5,
+      "filler": 5,
+      "concreteness": 4
+    },
+    "skilled": {
+      "puffery": 5,
+      "filler": 5,
+      "concreteness": 5
+    }
+  },
+  "verdict": "skilled is slightly more concrete by naming the empty fetch and zero-based pagination."
+}

@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/mai-code-1-flash-picker",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:46:58.894Z",
+  "ms": {
+    "bare": 20995,
+    "skilled": 22475
+  },
+  "metrics": {
+    "bare": {
+      "lines": 41,
+      "chars": 778,
+      "words": 112,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 5,
+      "headings": 5,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 39,
+      "chars": 768,
+      "words": 121,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 3,
+      "headings": 5,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "297ccef03296d8b1",
+      "order": "skilled-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        }
+      },
+      "verdict": "Both responses are equally concise, concrete, and free of puffery."
+    }
+  }
+}

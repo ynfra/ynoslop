@@ -1,0 +1,12 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/claude-sonnet-5",
+  "skills": [
+    "attention-rundown"
+  ],
+  "recorded": "2026-08-22T21:32:10.738Z",
+  "ms": {
+    "bare": 5654,
+    "skilled": 6392
+  }
+}

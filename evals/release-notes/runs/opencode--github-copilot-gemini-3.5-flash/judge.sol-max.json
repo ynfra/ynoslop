@@ -1,0 +1,17 @@
+{
+  "hash": "f5426dea9dc43e59",
+  "order": "bare-first",
+  "scores": {
+    "bare": {
+      "puffery": 4,
+      "filler": 4,
+      "concreteness": 5
+    },
+    "skilled": {
+      "puffery": 5,
+      "filler": 5,
+      "concreteness": 5
+    }
+  },
+  "verdict": "skilled is more restrained and direct, while both responses are equally concrete."
+}

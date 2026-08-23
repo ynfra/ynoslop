@@ -1,0 +1,12 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gpt-5-mini",
+  "skills": [
+    "attention-rundown"
+  ],
+  "recorded": "2026-08-22T21:52:20.230Z",
+  "ms": {
+    "bare": 16657,
+    "skilled": 27646
+  }
+}

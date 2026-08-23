@@ -1,0 +1,62 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gpt-5-mini",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:51:35.926Z",
+  "ms": {
+    "bare": 15700,
+    "skilled": 19633
+  },
+  "metrics": {
+    "bare": {
+      "lines": 33,
+      "chars": 2754,
+      "words": 377,
+      "slopWords": 1,
+      "emoji": 1,
+      "bullets": 15,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 3,
+      "hits": [
+        {
+          "term": "robust",
+          "count": 1
+        }
+      ]
+    },
+    "skilled": {
+      "lines": 12,
+      "chars": 1775,
+      "words": 256,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "6bd75ce13410e2e8",
+      "order": "skilled-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 4,
+          "concreteness": 4
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        }
+      },
+      "verdict": "skilled is tighter and more concrete, while bare repeats its recommendation and relies more on generic framing."
+    }
+  }
+}

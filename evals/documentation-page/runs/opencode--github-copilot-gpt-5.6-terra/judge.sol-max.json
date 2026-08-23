@@ -1,0 +1,17 @@
+{
+  "hash": "90953a226fb9d728",
+  "order": "skilled-first",
+  "scores": {
+    "bare": {
+      "puffery": 5,
+      "filler": 4,
+      "concreteness": 5
+    },
+    "skilled": {
+      "puffery": 5,
+      "filler": 5,
+      "concreteness": 5
+    }
+  },
+  "verdict": "skilled is slightly tighter, while both responses are concrete and free of puffery."
+}

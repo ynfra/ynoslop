@@ -1,0 +1,17 @@
+{
+  "hash": "312d43165d15d700",
+  "order": "bare-first",
+  "scores": {
+    "bare": {
+      "puffery": 5,
+      "filler": 4,
+      "concreteness": 4
+    },
+    "skilled": {
+      "puffery": 5,
+      "filler": 3,
+      "concreteness": 5
+    }
+  },
+  "verdict": "bare is leaner, while skilled is more concrete but repeats behavior already evident from the code."
+}

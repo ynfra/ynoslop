@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gpt-5.6-luna",
+  "skills": [
+    "humanizer"
+  ],
+  "recorded": "2026-08-22T21:38:48.311Z",
+  "ms": {
+    "bare": 5795,
+    "skilled": 6071
+  },
+  "metrics": {
+    "bare": {
+      "lines": 7,
+      "chars": 758,
+      "words": 129,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 1,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 7,
+      "chars": 705,
+      "words": 122,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 1,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "75f305ed6ed97c7a",
+      "order": "bare-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        }
+      },
+      "verdict": "Both are equally concise, neutral, and concrete, with no meaningful slop."
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gpt-5.6-luna",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:37:58.875Z",
+  "ms": {
+    "bare": 6196,
+    "skilled": 5897
+  },
+  "metrics": {
+    "bare": {
+      "lines": 55,
+      "chars": 824,
+      "words": 121,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 3,
+      "headings": 7,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 48,
+      "chars": 719,
+      "words": 106,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 3,
+      "headings": 4,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "a18d8abab0e2c018",
+      "order": "skilled-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        }
+      },
+      "verdict": "Both are concise and concrete, while bare is slightly more comprehensive with a compression-level example."
+    }
+  }
+}

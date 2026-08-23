@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gpt-5-mini",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:50:16.036Z",
+  "ms": {
+    "bare": 22870,
+    "skilled": 18453
+  },
+  "metrics": {
+    "bare": {
+      "lines": 60,
+      "chars": 2010,
+      "words": 317,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 16,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 1,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 43,
+      "chars": 2269,
+      "words": 354,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 11,
+      "headings": 1,
+      "exclamations": 0,
+      "emDashes": 3,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "10e686ce3b2a9231",
+      "order": "skilled-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 3,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 4,
+          "concreteness": 5
+        }
+      },
+      "verdict": "skilled is less repetitive and more concise, but it invents unsupported behavior, while bare has more filler yet stays closer to the provided facts."
+    }
+  }
+}

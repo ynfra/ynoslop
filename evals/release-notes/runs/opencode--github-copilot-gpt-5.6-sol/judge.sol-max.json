@@ -1,0 +1,17 @@
+{
+  "hash": "ff854026ac99c564",
+  "order": "bare-first",
+  "scores": {
+    "bare": {
+      "puffery": 5,
+      "filler": 4,
+      "concreteness": 5
+    },
+    "skilled": {
+      "puffery": 5,
+      "filler": 5,
+      "concreteness": 5
+    }
+  },
+  "verdict": "skilled is slightly tighter than bare, avoiding bare's introductory restatement while retaining the same concrete details."
+}

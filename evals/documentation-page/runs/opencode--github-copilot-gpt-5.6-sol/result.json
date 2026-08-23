@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gpt-5.6-sol",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:39:52.059Z",
+  "ms": {
+    "bare": 7504,
+    "skilled": 10259
+  },
+  "metrics": {
+    "bare": {
+      "lines": 58,
+      "chars": 916,
+      "words": 143,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 7,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 68,
+      "chars": 1349,
+      "words": 211,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 5,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "999b042b5045840d",
+      "order": "bare-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 4,
+          "concreteness": 5
+        }
+      },
+      "verdict": "bare is slightly tighter, while skilled ends with redundant restatements of its options."
+    }
+  }
+}

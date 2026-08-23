@@ -1,0 +1,12 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gpt-5.6-terra",
+  "skills": [
+    "humanizer"
+  ],
+  "recorded": "2026-08-22T21:36:48.471Z",
+  "ms": {
+    "bare": 11028,
+    "skilled": 6026
+  }
+}

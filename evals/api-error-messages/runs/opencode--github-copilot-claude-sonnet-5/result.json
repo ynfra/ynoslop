@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/claude-sonnet-5",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:30:36.524Z",
+  "ms": {
+    "bare": 6650,
+    "skilled": 5030
+  },
+  "metrics": {
+    "bare": {
+      "lines": 42,
+      "chars": 784,
+      "words": 141,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 13,
+      "chars": 468,
+      "words": 82,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 4,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "2144c34734dd9c8f",
+      "order": "bare-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 4,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        }
+      },
+      "verdict": "skilled is leaner, while both responses are concrete and free of puffery."
+    }
+  }
+}

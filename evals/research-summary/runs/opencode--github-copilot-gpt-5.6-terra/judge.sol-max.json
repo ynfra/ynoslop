@@ -1,0 +1,17 @@
+{
+  "hash": "663c5fa70aa99e14",
+  "order": "bare-first",
+  "scores": {
+    "bare": {
+      "puffery": 5,
+      "filler": 4,
+      "concreteness": 4
+    },
+    "skilled": {
+      "puffery": 5,
+      "filler": 5,
+      "concreteness": 5
+    }
+  },
+  "verdict": "skilled is more concise and concrete, especially on authentication, connection limits, heartbeats, and reconnection behavior."
+}

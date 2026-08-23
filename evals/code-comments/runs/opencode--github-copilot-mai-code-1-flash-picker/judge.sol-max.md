@@ -1,0 +1,1 @@
+{"A":{"puffery":5,"filler":4,"concreteness":5},"B":{"puffery":5,"filler":3,"concreteness":4},"verdict":"A is more concise and concrete, explicitly identifying jitter while avoiding B's redundant success comment."}

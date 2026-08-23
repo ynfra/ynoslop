@@ -1,0 +1,17 @@
+{
+  "hash": "9ca4fce40db10a7b",
+  "order": "bare-first",
+  "scores": {
+    "bare": {
+      "puffery": 5,
+      "filler": 5,
+      "concreteness": 5
+    },
+    "skilled": {
+      "puffery": 5,
+      "filler": 5,
+      "concreteness": 5
+    }
+  },
+  "verdict": "Both are concise and concrete, with no meaningful slop."
+}

@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/claude-sonnet-5",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:31:30.562Z",
+  "ms": {
+    "bare": 6802,
+    "skilled": 6375
+  },
+  "metrics": {
+    "bare": {
+      "lines": 22,
+      "chars": 1058,
+      "words": 176,
+      "slopWords": 0,
+      "emoji": 1,
+      "bullets": 5,
+      "headings": 6,
+      "exclamations": 0,
+      "emDashes": 1,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 24,
+      "chars": 858,
+      "words": 143,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 2,
+      "headings": 5,
+      "exclamations": 0,
+      "emDashes": 1,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "8281cb0ecb98105d",
+      "order": "skilled-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 4,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        }
+      },
+      "verdict": "skilled is tighter than bare, which unnecessarily repeats the migration warning."
+    }
+  }
+}

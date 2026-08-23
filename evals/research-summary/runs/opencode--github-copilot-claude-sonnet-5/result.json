@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/claude-sonnet-5",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:31:58.690Z",
+  "ms": {
+    "bare": 12818,
+    "skilled": 15310
+  },
+  "metrics": {
+    "bare": {
+      "lines": 19,
+      "chars": 2394,
+      "words": 358,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 11,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 6,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 15,
+      "chars": 3030,
+      "words": 445,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 5,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "5270adcd556638a0",
+      "order": "bare-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 4
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 4,
+          "concreteness": 5
+        }
+      },
+      "verdict": "bare is tighter and less repetitive, while skilled adds more concrete technical details at the cost of some extra length."
+    }
+  }
+}

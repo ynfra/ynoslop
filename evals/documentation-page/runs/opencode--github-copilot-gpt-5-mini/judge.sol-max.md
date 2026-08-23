@@ -1,0 +1,1 @@
+{"A":{"puffery":5,"filler":4,"concreteness":5},"B":{"puffery":5,"filler":3,"concreteness":5},"verdict":"A is less repetitive and more concise, but it invents unsupported behavior, while B has more filler yet stays closer to the provided facts."}

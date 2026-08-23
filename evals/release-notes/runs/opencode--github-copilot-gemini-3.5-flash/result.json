@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gemini-3.5-flash",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:44:01.656Z",
+  "ms": {
+    "bare": 11510,
+    "skilled": 15837
+  },
+  "metrics": {
+    "bare": {
+      "lines": 38,
+      "chars": 1466,
+      "words": 228,
+      "slopWords": 0,
+      "emoji": 4,
+      "bullets": 5,
+      "headings": 10,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 22,
+      "chars": 1259,
+      "words": 197,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 2,
+      "headings": 5,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "f5426dea9dc43e59",
+      "order": "bare-first",
+      "scores": {
+        "bare": {
+          "puffery": 4,
+          "filler": 4,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        }
+      },
+      "verdict": "skilled is more restrained and direct, while both responses are equally concrete."
+    }
+  }
+}

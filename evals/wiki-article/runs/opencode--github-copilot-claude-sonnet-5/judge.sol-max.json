@@ -1,0 +1,17 @@
+{
+  "hash": "cc814817cb5df343",
+  "order": "bare-first",
+  "scores": {
+    "bare": {
+      "puffery": 5,
+      "filler": 5,
+      "concreteness": 5
+    },
+    "skilled": {
+      "puffery": 5,
+      "filler": 3,
+      "concreteness": 5
+    }
+  },
+  "verdict": "bare is cleaner because skilled adds an unnecessary meta-commentary section."
+}

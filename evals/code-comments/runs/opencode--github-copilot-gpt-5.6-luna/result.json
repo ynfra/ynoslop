@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gpt-5.6-luna",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:37:35.760Z",
+  "ms": {
+    "bare": 8150,
+    "skilled": 9201
+  },
+  "metrics": {
+    "bare": {
+      "lines": 23,
+      "chars": 659,
+      "words": 107,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 22,
+      "chars": 644,
+      "words": 105,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "1e91e8e876c2bf3e",
+      "order": "bare-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        }
+      },
+      "verdict": "Both are equally concise, concrete, and free of puffery."
+    }
+  }
+}

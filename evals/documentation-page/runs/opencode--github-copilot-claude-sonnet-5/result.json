@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/claude-sonnet-5",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:31:17.382Z",
+  "ms": {
+    "bare": 9301,
+    "skilled": 7104
+  },
+  "metrics": {
+    "bare": {
+      "lines": 83,
+      "chars": 1555,
+      "words": 224,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 2,
+      "headings": 8,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 49,
+      "chars": 976,
+      "words": 155,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 3,
+      "headings": 5,
+      "exclamations": 0,
+      "emDashes": 3,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "6945f42ff6981f3b",
+      "order": "skilled-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 4,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        }
+      },
+      "verdict": "skilled is leaner, while both are concrete and free of puffery but invent default-output behavior."
+    }
+  }
+}

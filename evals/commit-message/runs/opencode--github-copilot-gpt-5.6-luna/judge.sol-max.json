@@ -1,0 +1,17 @@
+{
+  "hash": "463d774283954da0",
+  "order": "bare-first",
+  "scores": {
+    "bare": {
+      "puffery": 5,
+      "filler": 5,
+      "concreteness": 5
+    },
+    "skilled": {
+      "puffery": 5,
+      "filler": 5,
+      "concreteness": 4
+    }
+  },
+  "verdict": "bare is more concrete because it states the zero-based behavior and resulting empty-page fetch."
+}

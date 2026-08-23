@@ -1,0 +1,12 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gpt-5.6-luna",
+  "skills": [
+    "attention-spartan"
+  ],
+  "recorded": "2026-08-22T21:37:46.781Z",
+  "ms": {
+    "bare": 5683,
+    "skilled": 5337
+  }
+}

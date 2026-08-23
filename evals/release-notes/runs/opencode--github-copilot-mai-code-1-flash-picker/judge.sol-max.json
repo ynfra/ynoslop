@@ -1,0 +1,17 @@
+{
+  "hash": "98fef85dc31becd5",
+  "order": "bare-first",
+  "scores": {
+    "bare": {
+      "puffery": 5,
+      "filler": 4,
+      "concreteness": 5
+    },
+    "skilled": {
+      "puffery": 5,
+      "filler": 5,
+      "concreteness": 5
+    }
+  },
+  "verdict": "skilled is more concise, while both are concrete and free of puffery."
+}

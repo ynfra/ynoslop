@@ -1,0 +1,15 @@
+For a metrics dashboard that only sends server-to-client updates, SSE is the better default. WebSockets earn their complexity when you need client-to-server messages beyond initial HTTP requests.
+
+**Protocol and transport.** SSE runs over plain HTTP/1.1 or HTTP/2 as a long-lived `text/event-stream` response — no upgrade handshake, no separate protocol. WebSockets negotiate an upgrade from HTTP to a distinct framed protocol (RFC 6455) on the same TCP connection. This means SSE works through any HTTP-aware proxy, load balancer, or corporate firewall without extra configuration; WebSockets can be blocked or mishandled by proxies that don't support the `Upgrade` header, though this is rare in 2026.
+
+**Reconnection.** Browsers reconnect SSE automatically on connection drop, replaying from the last event ID if the server sends one (via the `Last-Event-ID` header). You get this for free with `EventSource`. WebSockets have no built-in reconnection — you write your own retry loop, backoff, and state resync logic, or pull in a library (e.g., `reconnecting-websocket`).
+
+**Message format.** SSE is text-only (UTF-8), so binary payloads need base64 encoding, adding ~33% overhead. WebSockets support both text and binary frames natively, which matters if you're pushing protobuf or MessagePack rather than JSON.
+
+**Directionality.** SSE is strictly server-to-client. If the dashboard later needs to send filter changes or acknowledgments back over the same channel, you'd still make a normal HTTP request alongside it — which is fine for a dashboard, since most control actions (change date range, toggle a metric) are naturally request/response anyway. WebSockets give you a bidirectional channel on one connection, useful if you're building something more interactive, like a shared cursor or chat.
+
+**Connection limits.** Browsers cap concurrent HTTP/1.1 connections per origin at 6, and each SSE stream consumes one of them — problematic if you have multiple dashboard tabs open against the same origin. HTTP/2 removes this limit by multiplexing SSE streams over a single connection, so use HTTP/2 if you expect users to open several tabs. WebSockets don't count against the HTTP connection limit since they run on their own upgraded connection.
+
+**Server resource cost.** Both hold one open connection per client. Neither is meaningfully cheaper on the server side at typical dashboard scale (hundreds to low thousands of concurrent viewers); the difference shows up in infrastructure compatibility and client code, not server load.
+
+**Recommendation.** Use SSE: less client code (native `EventSource`, no reconnect logic to write), works behind existing HTTP infrastructure without changes, and the missing client-to-server channel isn't a real constraint for a dashboard whose only outbound traffic is occasional filter requests. Switch to WebSockets only if you later need the client to push high-frequency data back (e.g., live cursor positions, keystroke-level collaboration) — a metrics dashboard almost never does.

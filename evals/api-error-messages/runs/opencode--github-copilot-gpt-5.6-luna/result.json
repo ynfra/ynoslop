@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gpt-5.6-luna",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:37:18.407Z",
+  "ms": {
+    "bare": 13048,
+    "skilled": 16854
+  },
+  "metrics": {
+    "bare": {
+      "lines": 21,
+      "chars": 989,
+      "words": 156,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 29,
+      "chars": 603,
+      "words": 101,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "ba2c5e7eccd8378f",
+      "order": "bare-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 3,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        }
+      },
+      "verdict": "skilled is more concise and direct, while bare adds irrelevant process narration."
+    }
+  }
+}

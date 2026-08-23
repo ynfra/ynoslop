@@ -1,0 +1,17 @@
+{
+  "hash": "ba2c5e7eccd8378f",
+  "order": "bare-first",
+  "scores": {
+    "bare": {
+      "puffery": 5,
+      "filler": 3,
+      "concreteness": 5
+    },
+    "skilled": {
+      "puffery": 5,
+      "filler": 5,
+      "concreteness": 5
+    }
+  },
+  "verdict": "skilled is more concise and direct, while bare adds irrelevant process narration."
+}

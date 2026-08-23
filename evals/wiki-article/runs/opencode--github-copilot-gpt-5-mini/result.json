@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gpt-5-mini",
+  "skills": [
+    "humanizer"
+  ],
+  "recorded": "2026-08-22T21:53:03.671Z",
+  "ms": {
+    "bare": 18656,
+    "skilled": 24783
+  },
+  "metrics": {
+    "bare": {
+      "lines": 15,
+      "chars": 1027,
+      "words": 171,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 10,
+      "chars": 1570,
+      "words": 268,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 1,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "f99a9b01c0fb5165",
+      "order": "bare-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 4,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 2,
+          "concreteness": 5
+        }
+      },
+      "verdict": "bare is substantially leaner, while skilled duplicates the article and adds unnecessary drafting commentary."
+    }
+  }
+}

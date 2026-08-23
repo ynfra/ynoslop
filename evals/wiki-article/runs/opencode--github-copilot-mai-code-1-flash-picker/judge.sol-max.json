@@ -1,0 +1,17 @@
+{
+  "hash": "b228d1d2839d74ec",
+  "order": "skilled-first",
+  "scores": {
+    "bare": {
+      "puffery": 5,
+      "filler": 5,
+      "concreteness": 5
+    },
+    "skilled": {
+      "puffery": 5,
+      "filler": 5,
+      "concreteness": 5
+    }
+  },
+  "verdict": "Both responses are equally concise, restrained, and factually concrete."
+}

@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/claude-sonnet-5",
+  "skills": [
+    "attention-rundown"
+  ],
+  "recorded": "2026-08-22T21:32:10.738Z",
+  "ms": {
+    "bare": 5654,
+    "skilled": 6392
+  },
+  "metrics": {
+    "bare": {
+      "lines": 8,
+      "chars": 640,
+      "words": 109,
+      "slopWords": 0,
+      "emoji": 6,
+      "bullets": 6,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 2,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 11,
+      "chars": 745,
+      "words": 119,
+      "slopWords": 0,
+      "emoji": 7,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 2,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "5e042c6c621d4105",
+      "order": "skilled-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 4,
+          "filler": 3,
+          "concreteness": 5
+        }
+      },
+      "verdict": "bare is cleaner and less repetitive, while both preserve the notes' concrete details."
+    }
+  }
+}

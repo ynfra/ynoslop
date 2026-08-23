@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gpt-5.6-sol",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:40:12.117Z",
+  "ms": {
+    "bare": 11223,
+    "skilled": 8834
+  },
+  "metrics": {
+    "bare": {
+      "lines": 46,
+      "chars": 1070,
+      "words": 170,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 5,
+      "headings": 7,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 12,
+      "chars": 788,
+      "words": 125,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 4,
+      "headings": 3,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "ff854026ac99c564",
+      "order": "bare-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 4,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        }
+      },
+      "verdict": "skilled is slightly tighter than bare, avoiding bare's introductory restatement while retaining the same concrete details."
+    }
+  }
+}

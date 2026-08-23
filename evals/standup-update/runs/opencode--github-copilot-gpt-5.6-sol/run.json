@@ -1,0 +1,12 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/gpt-5.6-sol",
+  "skills": [
+    "attention-rundown"
+  ],
+  "recorded": "2026-08-22T21:40:53.827Z",
+  "ms": {
+    "bare": 5984,
+    "skilled": 8374
+  }
+}

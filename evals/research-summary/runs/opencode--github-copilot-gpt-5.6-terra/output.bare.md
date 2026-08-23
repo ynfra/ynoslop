@@ -1,0 +1,11 @@
+For a metrics dashboard that only needs server-to-client updates, Server-Sent Events (SSE) are usually the simpler and better-fitting choice.
+
+SSE uses a normal long-lived HTTP response with `Content-Type: text/event-stream`. The browser automatically handles reconnects, supports event IDs for resuming after a disconnect, and exposes a small native API through `EventSource`. This makes it well suited to append-only updates such as metric samples, alerts, job progress, logs, or dashboard invalidation events. It also works naturally with HTTP infrastructure: authentication, cookies, proxies, and observability tend to behave similarly to other HTTP traffic. Operationally, SSE is one directional stream per connected browser, so its semantics are easy to reason about.
+
+WebSockets establish a persistent, bidirectional connection after an HTTP upgrade. They are preferable when the browser must send frequent, low-latency messages over the same connection, such as collaborative editing, multiplayer state, terminal input, or an interactive subscription protocol. They support text and binary frames and avoid HTTP framing overhead for each application message.
+
+For a one-way metrics dashboard, that flexibility is often unnecessary complexity. WebSockets require an application-level reconnection and resubscription strategy, explicit message protocol design, and potentially more careful handling in load balancers, reverse proxies, and connection-aware deployment infrastructure. Browser-to-server dashboard actions, such as changing filters or selecting a time range, can remain ordinary HTTP requests.
+
+SSE has limitations: it is text-only, fundamentally server-to-client, and each stream consumes a long-lived HTTP connection. HTTP/2 mitigates older browser per-origin connection limits, but proxy buffering and idle timeouts must still be configured correctly; periodic heartbeat comments are common. WebSockets are more efficient for high-frequency or binary payloads, but metrics updates are typically small JSON events at modest rates.
+
+Choose SSE unless requirements clearly include bidirectional real-time messaging, binary data, or a protocol that benefits from WebSocket multiplexing.
