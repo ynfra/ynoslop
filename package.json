@@ -5,10 +5,6 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "eval": "bun src/eval.ts",
-    "assemble": "bun src/assemble.ts",
-    "serve": "python3 -m http.server --directory public 4321",
-    "check": "bun src/assemble.ts && git diff --exit-code -- public/data.json",
     "typecheck": "bunx tsc --noEmit"
   },
   "devDependencies": {

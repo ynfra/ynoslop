@@ -1,73 +1,119 @@
-// Compose the prompt for a variant and execute it through a runner+model.
-// src/eval.ts is the only caller: every run is a recording. There is no
-// transient run path and no server — see AGENTS.md.
+// Step 1 — generate. For every eval × config.json model, spawn the runner
+// twice (bare, then skilled) and write runs/<runner>--<model>/{output.bare.md,
+// output.skilled.md, run.json}. The pair is the unit: if either variant fails,
+// nothing is written.
+//
+//   bin/run [--eval <slug>] [--model <model>]
 
-import { isAllowedModel } from "./models.ts";
+import { join } from "node:path";
+import { composePrompt, listEvalSlugs, loadAppConfig, loadEvalInputs, runDir, runKey } from "./common.ts";
+import { config } from "./config.ts";
+import { log, setDebug } from "./log.ts";
+import { computeMetrics } from "./metrics.ts";
 import { isAvailable, spawnRunner } from "./runners.ts";
-import type { SpawnResult } from "./runners.ts";
-import { loadEval, writeRun } from "./store.ts";
-import type { ContextBlock, RunnerName, Variant } from "./types.ts";
+import type { RunMeta, RunnerName, Variant } from "./types.ts";
 
-/**
- * None of the three CLIs share a skill mechanism, so the "skilled" variant
- * prepends the skill markdown to the prompt. Kept in one place so a per-runner
- * upgrade (e.g. `claude --append-system-prompt`) stays local.
- *
- * Block order is the skill (skilled only), then one <context> block per context
- * file in filename order, then the prompt. With no context files the output is
- * byte-identical to the plain skill+prompt form.
- *
- * The wrapper tag stays `<instructions>` on purpose: it is model-facing, and
- * `<instructions>` is a clearer signal to an LLM than `<skill>` would be.
- * Changing it would also break comparability with every existing recording.
- *
- * A named entry emits `<context path="NAME">`; a nameless one emits a plain
- * `<context>` open tag.
- */
-export function composePrompt(
-  variant: Variant,
-  prompt: string,
-  skill: string,
-  context: readonly ContextBlock[] = [],
-): string {
-  const blocks: string[] = [];
-  if (variant === "skilled" && skill) {
-    blocks.push(`<instructions>\n${skill}\n</instructions>`);
-  }
-  for (const file of context) {
-    const open = file.name ? `<context path="${file.name}">` : "<context>";
-    blocks.push(`${open}\n${file.text}\n</context>`);
-  }
-  blocks.push(prompt);
-  return blocks.join("\n\n");
+setDebug(config.debug);
+
+function fail(msg: string): never {
+  log.error(msg);
+  process.exit(1);
 }
 
-/**
- * Run one recorded variant of an eval and overwrite its recording on
- * success. Only src/eval.ts calls this.
- */
-export async function executeRun(
-  slug: string,
-  variant: Variant,
-  runner: RunnerName,
-  model: string,
-): Promise<SpawnResult> {
-  const ev = await loadEval(slug);
-  if (!ev) throw new Error(`unknown eval: ${slug}`);
-  if (!isAvailable(runner)) throw new Error(`runner not installed: ${runner}`);
-  // The model lands in argv — never spawn one that models.json doesn't list.
-  if (!isAllowedModel(runner, model)) throw new Error(`model not allowed for ${runner}: ${model}`);
-  const prompt = composePrompt(variant, ev.prompt, ev.skill, ev.context);
-  const result = await spawnRunner(runner, model, prompt);
-  if (result.code === 0 && !result.timedOut && result.text.trim()) {
-    // Stamp what produced this text, including which skills it saw — skill
-    // wording drifts, so a recording that cannot say what it read cannot be
-    // compared with a later one.
-    await writeRun(
-      slug,
-      { runner, model, variant, ms: result.durationMs, skills: ev.config.skills ?? [] },
-      result.text,
-    );
-  }
-  return result;
+interface Args {
+  eval?: string;
+  model?: string;
 }
+
+function parseArgs(argv: string[]): Args {
+  const args: Args = {};
+  for (let i = 0; i < argv.length; i++) {
+    switch (argv[i]) {
+      case "--eval":
+        args.eval = argv[++i] ?? fail("--eval needs a slug");
+        break;
+      case "--model":
+        args.model = argv[++i] ?? fail("--model needs a model string");
+        break;
+      default:
+        fail(`unknown argument: ${argv[i]} (bin/run [--eval <slug>] [--model <model>])`);
+    }
+  }
+  return args;
+}
+
+const args = parseArgs(process.argv.slice(2));
+const cfg = await loadAppConfig().catch((err) => fail(String(err instanceof Error ? err.message : err)));
+
+const targets = args.model ? cfg.models.filter((t) => t.model === args.model) : cfg.models;
+if (targets.length === 0) {
+  fail(`config.json lists no model ${JSON.stringify(args.model)} — it has: ${cfg.models.map((t) => t.model).join(", ")}`);
+}
+
+const slugs = args.eval ? [args.eval] : await listEvalSlugs();
+
+let failed = 0;
+// Warn once per missing binary — the matrix would repeat it for every model.
+const warnedMissing = new Set<RunnerName>();
+
+for (const slug of slugs) {
+  const inputs = await loadEvalInputs(slug);
+  if (!inputs) {
+    failed++;
+    log.error(`unknown eval: ${slug}`);
+    continue;
+  }
+  for (const target of targets) {
+    if (!isAvailable(target.runner)) {
+      if (!warnedMissing.has(target.runner)) {
+        warnedMissing.add(target.runner);
+        log.warn(`skip all ${target.runner} runs: ${target.runner} not installed`);
+      }
+      continue;
+    }
+    const key = runKey(target.runner, target.model);
+    const out: Partial<Record<Variant, string>> = {};
+    const ms: Partial<Record<Variant, number>> = {};
+    for (const variant of ["bare", "skilled"] as const) {
+      log.info(`running ${slug}/${variant} [${key}] ...`);
+      const prompt = composePrompt(variant, inputs.prompt, inputs.skill, inputs.context);
+      try {
+        const result = await spawnRunner(target.runner, target.model, prompt, target.effort);
+        if (result.code !== 0 || result.timedOut || !result.text.trim()) {
+          const reason = result.timedOut ? "timed out" : result.text.trim() ? `exit ${result.code}` : "empty output";
+          log.error(`${slug}/${variant} [${key}]: ${reason}\n${result.stderr.trim()}`);
+          break;
+        }
+        out[variant] = result.text.trim();
+        ms[variant] = result.durationMs;
+        const m = computeMetrics(out[variant]);
+        log.info(
+          `${slug}/${variant} [${key}]: ok (${result.durationMs}ms · ` +
+            `${m.lines} lines · ${m.chars} chars · ${m.slopWords} slop)`,
+        );
+      } catch (err) {
+        log.error(`${slug}/${variant} [${key}]: ${err}`);
+        break;
+      }
+    }
+    if (out.bare === undefined || out.skilled === undefined || ms.bare === undefined || ms.skilled === undefined) {
+      failed++;
+      continue;
+    }
+    const dir = runDir(slug, key);
+    const meta: RunMeta = {
+      runner: target.runner,
+      model: target.model,
+      ...(target.effort !== undefined ? { effort: target.effort } : {}),
+      skills: inputs.skills,
+      recorded: new Date().toISOString(),
+      ms: { bare: ms.bare, skilled: ms.skilled },
+    };
+    await Bun.write(join(dir, "output.bare.md"), `${out.bare}\n`);
+    await Bun.write(join(dir, "output.skilled.md"), `${out.skilled}\n`);
+    await Bun.write(join(dir, "run.json"), `${JSON.stringify(meta, null, 2)}\n`);
+    log.info(`wrote ${slug}/runs/${key}/ (output.bare.md, output.skilled.md, run.json)`);
+  }
+}
+
+process.exit(failed > 0 ? 1 : 0);

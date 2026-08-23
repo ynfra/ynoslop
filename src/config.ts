@@ -1,4 +1,5 @@
 // Central configuration, resolved once from the environment at startup.
+// models/judges live in config.json at the component root — see common.ts.
 
 import { join } from "node:path";
 
@@ -17,14 +18,11 @@ function num(key: string, fallback: number): number {
 const ROOT = join(import.meta.dir, "..");
 
 export const config = {
+  rootDir: ROOT,
   evalsDir: env("YNOSLOP_EVALS_DIR", join(ROOT, "evals")),
   skillsDir: env("YNOSLOP_SKILLS_DIR", join(ROOT, "skills")),
-  // Where `make assemble` writes data.json, and the static site's root.
-  publicDir: join(ROOT, "public"),
-  // Whitelist of model strings per runner; they end up in CLI argv.
-  modelsFile: join(ROOT, "models.json"),
-  // Named run plans (suites of targets). Validated against modelsFile.
-  suitesFile: join(ROOT, "suites.json"),
+  // Eval models + judges; validated on load by loadAppConfig().
+  configFile: join(ROOT, "config.json"),
 
   runTimeoutMs: num("YNOSLOP_RUN_TIMEOUT_MS", 300_000),
 

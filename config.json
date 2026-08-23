@@ -1,0 +1,22 @@
+{
+  "models": [
+    { "runner": "opencode", "model": "github-copilot/claude-haiku-4.5" },
+    { "runner": "opencode", "model": "github-copilot/claude-sonnet-5" },
+    { "runner": "opencode", "model": "github-copilot/claude-opus-4.8" },
+    { "runner": "opencode", "model": "github-copilot/gpt-5.6-terra" },
+    { "runner": "opencode", "model": "github-copilot/gpt-5.6-luna" },
+    { "runner": "opencode", "model": "github-copilot/gpt-5.6-sol" },
+    { "runner": "opencode", "model": "github-copilot/gemini-3.5-flash" },
+    { "runner": "opencode", "model": "github-copilot/mai-code-1-flash-picker" },
+    { "runner": "opencode", "model": "github-copilot/gpt-5-mini" }
+  ],
+  "judges": [
+    {
+      "name": "sol-max",
+      "runner": "opencode",
+      "model": "github-copilot/gpt-5.6-sol",
+      "effort": "max",
+      "prompt": "judges/slop.md"
+    }
+  ]
+}
