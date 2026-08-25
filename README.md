@@ -3,7 +3,6 @@
 Eval bench measuring what agent skills do to model output. Each eval asks one
 prompt twice per model — **bare** (no skill) and **skilled** (the skill
 prepended) — then deterministic metrics and blind LLM judges compare the pair.
-Not wired into Copybara: no remote, no split/import.
 
 ## Prerequisites
 
