@@ -18,33 +18,20 @@ interface RunnerAdapter {
   /** argv WITHOUT the prompt — see promptVia for how the prompt is delivered. */
   buildArgs(model: string, effort?: string): string[];
   /**
-   * `argv` appends the prompt as the last argument. `stdin` writes it to the
-   * process instead, which is required whenever a variadic flag would swallow
-   * it — claude's `--disallowedTools <tools...>` consumes every argument that
-   * follows, prompt included — and is safer regardless, since a composed
-   * prompt can run to tens of kilobytes.
+   * `stdin` is required when a variadic flag would swallow an argv prompt
+   * (claude's `--disallowedTools <tools...>`), and safer for multi-KB prompts.
    */
   promptVia: "argv" | "stdin";
-  /**
-   * Env that switches off ambient context the runner would otherwise load from
-   * $HOME. The composed prompt must be the only instruction a run receives, and
-   * a cwd sentinel cannot cover sources that live outside the directory tree.
-   */
+  /** Env that switches off ambient $HOME context a cwd sentinel can't cover. */
   buildEnv?(model: string, effort?: string): Record<string, string>;
 }
 
 /**
- * opencode's isolation config. Delivered through OPENCODE_CONFIG_CONTENT
- * because a plain opencode.json in a bare working directory is NOT read — only
- * an env-delivered config reliably applies. Still written to the spawn cwd as
- * well, purely so the directory documents itself.
- *
- * Only the mutating and agentic tools are removed. `read`/`glob`/`grep` stay,
- * and that is deliberate: with every tool gone the model still attempts a write
- * and the blocked call leaks raw tool markup into the answer, which is worse
- * than the problem it fixes. With no write path to attempt it simply answers
- * in text, which is what an output-quality eval must measure. The survivors
- * are harmless here — the spawn cwd is empty.
+ * opencode's isolation config, delivered via OPENCODE_CONFIG_CONTENT — a plain
+ * opencode.json in a bare cwd is NOT read reliably (it's still written there so
+ * the directory documents itself). Only mutating/agentic tools are removed:
+ * with read/glob/grep gone too, blocked write attempts leak raw tool markup
+ * into the answer, which is worse. The survivors are harmless in an empty cwd.
  */
 const DISABLED_TOOLS = [
   "write",
@@ -84,11 +71,8 @@ function opencodeConfig(model?: string, effort?: string): string {
 }
 
 const ADAPTERS: Record<RunnerName, RunnerAdapter> = {
-  // `--bare` looks made for this (it disables CLAUDE.md auto-discovery, hooks,
-  // plugins and auto-memory) but it also states that OAuth and the keychain are
-  // never read, so it needs an ANTHROPIC_API_KEY. On a subscription login that
-  // is not an option — the same trade a container forces — so the equivalent is
-  // assembled from composable flags instead.
+  // `--bare` would fit but refuses OAuth/keychain auth (needs ANTHROPIC_API_KEY),
+  // so the equivalent is assembled from composable flags instead.
   claude: {
     bin: "claude",
     buildArgs: (m, effort) => {
@@ -115,10 +99,8 @@ const ADAPTERS: Record<RunnerName, RunnerAdapter> = {
   },
   opencode: {
     bin: "opencode",
-    // Documented switches: opencode.ai/docs/rules. This kills ~/.claude/CLAUDE.md
-    // and, more importantly, ~/.claude/skills — skills are advertised in the
-    // skill tool's description and loaded on the model's initiative, so they
-    // reach a run no matter what the working directory looks like.
+    // The env below (opencode.ai/docs/rules) kills ~/.claude/CLAUDE.md and
+    // ~/.claude/skills, which reach a run regardless of working directory.
     buildArgs: (m) => ["opencode", "run", "--pure", "-m", m],
     promptVia: "argv",
     buildEnv: (m, effort) => ({
@@ -128,10 +110,8 @@ const ADAPTERS: Record<RunnerName, RunnerAdapter> = {
       OPENCODE_CONFIG_CONTENT: opencodeConfig(m, effort),
     }),
   },
-  // codex is the best-behaved of the three: --ignore-user-config drops
-  // $CODEX_HOME/config.toml while explicitly keeping auth, so isolation costs
-  // nothing here. --skip-git-repo-check is required, not optional: the spawn
-  // cwd is a bare temp directory, and codex refuses to run outside a repo.
+  // --ignore-user-config drops $CODEX_HOME/config.toml but keeps auth.
+  // --skip-git-repo-check is required: codex refuses to run outside a repo.
   codex: {
     bin: "codex",
     buildArgs: (m, effort) => [
@@ -156,19 +136,11 @@ export function isAvailable(name: RunnerName): boolean {
 }
 
 /**
- * The cwd every runner is spawned in: a private directory, created here, that
- * declares itself free of project instructions.
- *
- * The runners find instruction files by walking UP from cwd until they hit one.
- * That makes the shared OS tmpdir the wrong spawn directory rather than a safe
- * one: a stray AGENTS.md anywhere above the spawn point silently joins every
- * composed prompt, and neither the recording nor the metrics would show it.
- * Not hypothetical — a copy of this component's own AGENTS.md sat in the OS
- * tmpdir and was loaded into every run, which is why recordings started
- * reasoning about monorepo commit conventions nobody asked about.
- *
- * Empty AGENTS.md and CLAUDE.md sentinels stop the walk here. They are empty on
- * purpose: any text in them would itself reach the model.
+ * Private spawn cwd with empty AGENTS.md/CLAUDE.md sentinels. Runners walk UP
+ * from cwd for instruction files, so a stray AGENTS.md above the spawn point
+ * (e.g. in the shared OS tmpdir — it happened) silently joins every composed
+ * prompt. The sentinels stop the walk; they are empty because any text in them
+ * would itself reach the model.
  */
 let cachedCwd: string | undefined;
 

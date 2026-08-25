@@ -5,7 +5,7 @@ import { createHash } from "node:crypto";
 import { readdir } from "node:fs/promises";
 import { join } from "node:path";
 import { config } from "./config.ts";
-import { log } from "./log.ts";
+import { log, setDebug } from "./log.ts";
 import { computeMetrics } from "./metrics.ts";
 import type { Metrics } from "./metrics.ts";
 import { isEffort, isRunnerName } from "./types.ts";
@@ -20,6 +20,8 @@ import type {
   Variant,
 } from "./types.ts";
 
+setDebug(config.debug);
+
 // Slugs and run-set keys become path components; anything else is skipped.
 const SLUG_RE = /^[a-z0-9-]+$/;
 // v2 keys always carry the runner prefix; the old `fixture` dirs don't match.
@@ -27,6 +29,33 @@ const KEY_RE = /^[a-z0-9.-]+--[a-z0-9.-]+$/;
 
 export function isValidSlug(slug: string): boolean {
   return SLUG_RE.test(slug);
+}
+
+export function fail(msg: string): never {
+  log.error(msg);
+  process.exit(1);
+}
+
+/**
+ * Tiny flag parser shared by the four entry points. `strings` flags take a
+ * value, `booleans` don't; anything else exits with the usage line.
+ */
+export function parseArgs(
+  argv: string[],
+  spec: { strings?: string[]; booleans?: string[]; usage: string },
+): Record<string, string | boolean | undefined> {
+  const out: Record<string, string | boolean> = {};
+  for (let i = 0; i < argv.length; i++) {
+    const name = (argv[i] ?? "").startsWith("--") ? (argv[i] as string).slice(2) : "";
+    if (spec.booleans?.includes(name)) {
+      out[name] = true;
+    } else if (spec.strings?.includes(name)) {
+      out[name] = argv[++i] ?? fail(`--${name} needs a value (${spec.usage})`);
+    } else {
+      fail(`unknown argument: ${argv[i]} (${spec.usage})`);
+    }
+  }
+  return out;
 }
 
 function modelSlug(model: string): string {
@@ -46,9 +75,8 @@ export async function readIfExists(path: string): Promise<string | null> {
   return (await f.exists()) ? await f.text() : null;
 }
 
-// Upstream SKILL.md files open with a YAML block — loader metadata, not
-// instruction for a model, so it never reaches composePrompt(). Non-greedy, so
-// a later horizontal rule in the body is left alone.
+// YAML frontmatter is loader metadata, never model input. Non-greedy, so a
+// later horizontal rule in the body is left alone.
 const FRONTMATTER_RE = /^---\r?\n[\s\S]*?\r?\n---[ \t]*(\r?\n|$)/;
 
 export function stripFrontmatter(text: string): string {
@@ -156,11 +184,9 @@ export async function loadEvalInputs(slug: string): Promise<EvalInputs | null> {
 }
 
 /**
- * The single place the eval folder becomes a prompt. Block order: the skill
- * (skilled only) wrapped in <instructions>, one <context path=NAME> block per
- * context file in filename order, then the prompt. The wrapper tag stays
- * `<instructions>` — it is model-facing and the clearer signal to an LLM than
- * `<skill>`; changing it breaks comparability with every existing recording.
+ * The single place the eval folder becomes a prompt: <instructions> (skilled
+ * only), <context> blocks in filename order, then the prompt. Changing the
+ * wrapper tags breaks comparability with every existing recording.
  */
 export function composePrompt(
   variant: Variant,

@@ -1,88 +1,85 @@
 #!/usr/bin/env bash
 #
-# Fetch the third-party skills that ynoslop vendors, from their upstream repos.
+# Copies pinned third-party skills into skills/<name>/. Run this file.
 #
-#   ./skills/fetch-upstream.sh
+# Needs signed-in `gh` (`gh auth status`). The token is why: higher rate
+# limits, and a real error instead of an HTML 404.
 #
-# Needs the GitHub CLI, authenticated — check with `gh auth status`. Using gh
-# rather than curl means the request carries your token: higher rate limits,
-# and a real error message instead of an HTML 404 page.
+# One `gh api` call per file, written byte-for-byte to SKILL.md. Upstream
+# already ships YAML frontmatter (name, description).
 #
-# One `gh api` call per file, written to skills/<name>/SKILL.md. Upstream
-# already ships YAML frontmatter (name, description), so this is a byte copy —
-# nothing is rewritten or generated.
-#
-# Every ref below is PINNED, and that is the point. ynoslop compares recordings
-# made months apart, so the skill text has to be a fixed thing; `?ref=main`
-# would let upstream silently reword a skill and invalidate every recording
-# made against the old wording, with nothing on disk to show it happened.
-# Bumping a skill is a deliberate edit to this file — do it, re-run, read the
-# diff, and expect to re-record that skill's evals.
+# Pins are the whole point. ynoslop compares recordings months apart, so
+# skill text has to stay fixed. `?ref=main` would let upstream reword a skill
+# and invalidate every old recording, with nothing on disk to show it
+# happened. To bump: edit the ref here, re-run, read the diff, re-record
+# that skill's evals.
 #
 #   attention-span   tag 0.7 = 8a0a776
 #   humanizer        e2e92e7 (SKILL.md metadata.version 2.11.2; no tag exists)
 #
-# Each file lands as .tmp and is moved into place only on success, so a moved
-# upstream path can never leave a zero-byte skill behind for composePrompt()
-# to paste into a prompt as an empty <instructions> block.
+# Writes land as .tmp and move into place only on success. A moved upstream
+# path must never leave a zero-byte skill for composePrompt() to paste as an
+# empty <instructions> block.
 #
-# Two of these skills are AGPL-3.0, so each folder also gets the upstream
-# LICENSE next to the text it covers.
+# The three attention-* skills are AGPL-3.0, so each folder also gets the
+# upstream LICENSE next to the text it covers.
 #
-# no-slop-writing is deliberately NOT here: it has no upstream, it is written
-# in this repo. Running this never touches it.
+# no-slop-writing is local and has no upstream. This script never touches it.
 #
-# Verified 2026-08-22: both repos on branch main, all four paths resolve.
+# Verified 2026-08-24: both repos on branch main, all five paths resolve.
 
 set -euo pipefail
 
-# Resolve skills/ from this script's own location, so the cwd does not matter.
+# skills/ is next to this script, so the cwd does not matter.
 cd "$(dirname "$0")"
 
 # Without this header the contents API returns base64 wrapped in JSON.
 RAW='Accept: application/vnd.github.raw'
 
+# $1 dest path, $2 gh contents API path. .tmp first: a failed fetch
+# must not replace a good file with nothing.
+pull() {
+  local dest=$1 api=$2
+  mkdir -p "$(dirname "$dest")"
+  gh api -H "$RAW" "$api" > "$dest.tmp"
+  mv "$dest.tmp" "$dest"
+}
+
 
 # --- attention-spartan --- alexgreensh/attention-span, AGPL-3.0 -------------
 
 echo "==> attention-spartan"
-mkdir -p attention-spartan
-
-gh api -H "$RAW" 'repos/alexgreensh/attention-span/contents/output-styles/spartan.md?ref=0.7' \
-  > attention-spartan/SKILL.md.tmp
-mv attention-spartan/SKILL.md.tmp attention-spartan/SKILL.md
-
-gh api -H "$RAW" 'repos/alexgreensh/attention-span/contents/LICENSE?ref=0.7' \
-  > attention-spartan/LICENSE.tmp
-mv attention-spartan/LICENSE.tmp attention-spartan/LICENSE
+pull attention-spartan/SKILL.md \
+  'repos/alexgreensh/attention-span/contents/output-styles/spartan.md?ref=0.7'
+pull attention-spartan/LICENSE \
+  'repos/alexgreensh/attention-span/contents/LICENSE?ref=0.7'
 
 
 # --- attention-rundown --- alexgreensh/attention-span, AGPL-3.0 -------------
 
 echo "==> attention-rundown"
-mkdir -p attention-rundown
+pull attention-rundown/SKILL.md \
+  'repos/alexgreensh/attention-span/contents/output-styles/rundown.md?ref=0.7'
+pull attention-rundown/LICENSE \
+  'repos/alexgreensh/attention-span/contents/LICENSE?ref=0.7'
 
-gh api -H "$RAW" 'repos/alexgreensh/attention-span/contents/output-styles/rundown.md?ref=0.7' \
-  > attention-rundown/SKILL.md.tmp
-mv attention-rundown/SKILL.md.tmp attention-rundown/SKILL.md
 
-gh api -H "$RAW" 'repos/alexgreensh/attention-span/contents/LICENSE?ref=0.7' \
-  > attention-rundown/LICENSE.tmp
-mv attention-rundown/LICENSE.tmp attention-rundown/LICENSE
+# --- attention-kind --- alexgreensh/attention-span, AGPL-3.0 ----------------
+
+echo "==> attention-kind"
+pull attention-kind/SKILL.md \
+  'repos/alexgreensh/attention-span/contents/output-styles/attention-kind.md?ref=0.7'
+pull attention-kind/LICENSE \
+  'repos/alexgreensh/attention-span/contents/LICENSE?ref=0.7'
 
 
 # --- humanizer --- blader/humanizer, MIT ------------------------------------
 
 echo "==> humanizer"
-mkdir -p humanizer
-
-gh api -H "$RAW" 'repos/blader/humanizer/contents/SKILL.md?ref=e2e92e7b4b8229253ed5c8e81dc65463fdeddda5' \
-  > humanizer/SKILL.md.tmp
-mv humanizer/SKILL.md.tmp humanizer/SKILL.md
-
-gh api -H "$RAW" 'repos/blader/humanizer/contents/LICENSE?ref=e2e92e7b4b8229253ed5c8e81dc65463fdeddda5' \
-  > humanizer/LICENSE.tmp
-mv humanizer/LICENSE.tmp humanizer/LICENSE
+pull humanizer/SKILL.md \
+  'repos/blader/humanizer/contents/SKILL.md?ref=e2e92e7b4b8229253ed5c8e81dc65463fdeddda5'
+pull humanizer/LICENSE \
+  'repos/blader/humanizer/contents/LICENSE?ref=e2e92e7b4b8229253ed5c8e81dc65463fdeddda5'
 
 
 # --- what landed ------------------------------------------------------------
@@ -91,9 +88,10 @@ echo
 echo "fetched:"
 ls -l attention-spartan/SKILL.md attention-spartan/LICENSE \
       attention-rundown/SKILL.md attention-rundown/LICENSE \
+      attention-kind/SKILL.md    attention-kind/LICENSE \
       humanizer/SKILL.md         humanizer/LICENSE
 
 echo
 echo "no-slop-writing: local, not fetched."
-echo "Upstream can change wording at any time — read the diff before committing:"
+echo "Upstream can change wording at any time. Read the diff before committing:"
 echo "  git diff -- ynoslop/skills/"

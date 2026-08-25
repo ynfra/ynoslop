@@ -6,51 +6,35 @@
 //   bin/run [--eval <slug>] [--model <model>]
 
 import { join } from "node:path";
-import { composePrompt, listEvalSlugs, loadAppConfig, loadEvalInputs, runDir, runKey } from "./common.ts";
-import { config } from "./config.ts";
-import { log, setDebug } from "./log.ts";
+import {
+  composePrompt,
+  fail,
+  listEvalSlugs,
+  loadAppConfig,
+  loadEvalInputs,
+  parseArgs,
+  runDir,
+  runKey,
+} from "./common.ts";
+import { log } from "./log.ts";
 import { computeMetrics } from "./metrics.ts";
 import { isAvailable, spawnRunner } from "./runners.ts";
 import type { RunMeta, RunnerName, Variant } from "./types.ts";
 
-setDebug(config.debug);
-
-function fail(msg: string): never {
-  log.error(msg);
-  process.exit(1);
-}
-
-interface Args {
-  eval?: string;
-  model?: string;
-}
-
-function parseArgs(argv: string[]): Args {
-  const args: Args = {};
-  for (let i = 0; i < argv.length; i++) {
-    switch (argv[i]) {
-      case "--eval":
-        args.eval = argv[++i] ?? fail("--eval needs a slug");
-        break;
-      case "--model":
-        args.model = argv[++i] ?? fail("--model needs a model string");
-        break;
-      default:
-        fail(`unknown argument: ${argv[i]} (bin/run [--eval <slug>] [--model <model>])`);
-    }
-  }
-  return args;
-}
-
-const args = parseArgs(process.argv.slice(2));
+const args = parseArgs(process.argv.slice(2), {
+  strings: ["eval", "model"],
+  usage: "bin/run [--eval <slug>] [--model <model>]",
+});
+const evalArg = args.eval as string | undefined;
+const modelArg = args.model as string | undefined;
 const cfg = await loadAppConfig().catch((err) => fail(String(err instanceof Error ? err.message : err)));
 
-const targets = args.model ? cfg.models.filter((t) => t.model === args.model) : cfg.models;
+const targets = modelArg ? cfg.models.filter((t) => t.model === modelArg) : cfg.models;
 if (targets.length === 0) {
-  fail(`config.json lists no model ${JSON.stringify(args.model)} — it has: ${cfg.models.map((t) => t.model).join(", ")}`);
+  fail(`config.json lists no model ${JSON.stringify(modelArg)} — it has: ${cfg.models.map((t) => t.model).join(", ")}`);
 }
 
-const slugs = args.eval ? [args.eval] : await listEvalSlugs();
+const slugs = evalArg ? [evalArg] : await listEvalSlugs();
 
 let failed = 0;
 // Warn once per missing binary — the matrix would repeat it for every model.

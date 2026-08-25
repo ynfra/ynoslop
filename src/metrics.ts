@@ -22,17 +22,10 @@ export interface Metrics {
   hits: SlopHit[];
 }
 
-/** Size of an input (prompt, skill, context file) without the full metric set. */
-export interface TextInfo {
-  lines: number;
-  chars: number;
-}
-
 /**
- * Curated slop markers taken from the rules in `skills/no-slop-writing.md`
- * and `skills/humanizer.md`. Single words match whole words only;
- * everything else (spaces, apostrophes, hyphens) matches as a substring, so
- * `game-chang` catches both "game-changing" and "game-changer".
+ * Curated slop markers from the no-slop-writing and humanizer skills.
+ * Single words match whole words; anything with spaces/hyphens matches as a
+ * substring, so `game-chang` catches "game-changing" and "game-changer".
  */
 export const SLOP_LEXICON: readonly string[] = [
   // Puffery and filler single words.
@@ -140,8 +133,4 @@ export function computeMetrics(text: string): Metrics {
     emDashes: text.match(EM_DASH_RE)?.length ?? 0,
     hits: hits.slice(0, MAX_HITS),
   };
-}
-
-export function textInfo(text: string): TextInfo {
-  return { lines: countLines(text), chars: text.length };
 }

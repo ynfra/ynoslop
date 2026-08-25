@@ -10,36 +10,10 @@
 // judge scores higher-better); direction is not universal — a skill may
 // mandate emoji markers — so read deltas with the skill in mind.
 
-import { deAnonymizeVerdict, listEvalSlugs, listRunKeys, loadRun, printTable, sumScores } from "./common.ts";
-import { config } from "./config.ts";
-import { log, setDebug } from "./log.ts";
+import { deAnonymizeVerdict, listEvalSlugs, listRunKeys, loadRun, parseArgs, printTable, sumScores } from "./common.ts";
+import { log } from "./log.ts";
 import type { LoadedRun } from "./common.ts";
 import type { Metrics } from "./metrics.ts";
-
-setDebug(config.debug);
-
-function fail(msg: string): never {
-  log.error(msg);
-  process.exit(1);
-}
-
-interface Args {
-  eval?: string;
-}
-
-function parseArgs(argv: string[]): Args {
-  const args: Args = {};
-  for (let i = 0; i < argv.length; i++) {
-    switch (argv[i]) {
-      case "--eval":
-        args.eval = argv[++i] ?? fail("--eval needs a slug");
-        break;
-      default:
-        fail(`unknown argument: ${argv[i]} (bin/results [--eval <slug>])`);
-    }
-  }
-  return args;
-}
 
 // ---- color ------------------------------------------------------------------
 
@@ -177,8 +151,9 @@ function printDetail(run: LoadedRun): void {
 
 // ---- main --------------------------------------------------------------------
 
-const args = parseArgs(process.argv.slice(2));
-const slugs = args.eval ? [args.eval] : await listEvalSlugs();
+const args = parseArgs(process.argv.slice(2), { strings: ["eval"], usage: "bin/results [--eval <slug>]" });
+const evalArg = args.eval as string | undefined;
+const slugs = evalArg ? [evalArg] : await listEvalSlugs();
 
 const runs: LoadedRun[] = [];
 for (const slug of slugs) {
@@ -189,11 +164,11 @@ for (const slug of slugs) {
 }
 
 if (runs.length === 0) {
-  log.warn(args.eval ? `no recorded pairs for eval ${args.eval}` : "no recorded pairs on disk — run bin/run first");
+  log.warn(evalArg ? `no recorded pairs for eval ${evalArg}` : "no recorded pairs on disk — run bin/run first");
   process.exit(0);
 }
 
-if (args.eval) {
+if (evalArg) {
   runs.forEach((run, i) => {
     if (i > 0) console.log(`\n${"=".repeat(72)}\n`);
     printDetail(run);

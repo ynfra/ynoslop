@@ -10,51 +10,20 @@ import {
   composePrompt,
   deAnonymizeVerdict,
   extractJson,
+  fail,
   listEvalSlugs,
   listRunKeys,
   loadAppConfig,
   loadEvalInputs,
   pairHash,
+  parseArgs,
   readIfExists,
   runDir,
 } from "./common.ts";
 import { config } from "./config.ts";
-import { log, setDebug } from "./log.ts";
+import { log } from "./log.ts";
 import { isAvailable, spawnRunner } from "./runners.ts";
 import type { JudgeOrder, JudgeRecord, JudgeSpec, RunnerName } from "./types.ts";
-
-setDebug(config.debug);
-
-function fail(msg: string): never {
-  log.error(msg);
-  process.exit(1);
-}
-
-interface Args {
-  eval?: string;
-  judge?: string;
-  force: boolean;
-}
-
-function parseArgs(argv: string[]): Args {
-  const args: Args = { force: false };
-  for (let i = 0; i < argv.length; i++) {
-    switch (argv[i]) {
-      case "--eval":
-        args.eval = argv[++i] ?? fail("--eval needs a slug");
-        break;
-      case "--judge":
-        args.judge = argv[++i] ?? fail("--judge needs a judge name");
-        break;
-      case "--force":
-        args.force = true;
-        break;
-      default:
-        fail(`unknown argument: ${argv[i]} (bin/judge [--eval <slug>] [--judge <name>] [--force])`);
-    }
-  }
-  return args;
-}
 
 /** {criterion: 1..5} — the per-response half of a judge reply. */
 function isScoreMap(v: unknown): v is Record<string, number> {
@@ -63,14 +32,21 @@ function isScoreMap(v: unknown): v is Record<string, number> {
   return values.length > 0 && values.every((n) => typeof n === "number" && Number.isFinite(n));
 }
 
-const args = parseArgs(process.argv.slice(2));
+const args = parseArgs(process.argv.slice(2), {
+  strings: ["eval", "judge"],
+  booleans: ["force"],
+  usage: "bin/judge [--eval <slug>] [--judge <name>] [--force]",
+});
+const evalArg = args.eval as string | undefined;
+const judgeArg = args.judge as string | undefined;
+const force = args.force === true;
 const cfg = await loadAppConfig().catch((err) => fail(String(err instanceof Error ? err.message : err)));
 
-const judges = args.judge ? cfg.judges.filter((j) => j.name === args.judge) : cfg.judges;
+const judges = judgeArg ? cfg.judges.filter((j) => j.name === judgeArg) : cfg.judges;
 if (judges.length === 0) {
   fail(
-    args.judge
-      ? `config.json lists no judge ${JSON.stringify(args.judge)} — it has: ${cfg.judges.map((j) => j.name).join(", ") || "(none)"}`
+    judgeArg
+      ? `config.json lists no judge ${JSON.stringify(judgeArg)} — it has: ${cfg.judges.map((j) => j.name).join(", ") || "(none)"}`
       : "config.json lists no judges",
   );
 }
@@ -84,7 +60,7 @@ for (const judge of judges) {
   rubrics.set(judge.name, text.trim());
 }
 
-const slugs = args.eval ? [args.eval] : await listEvalSlugs();
+const slugs = evalArg ? [evalArg] : await listEvalSlugs();
 
 let failed = 0;
 const warnedMissing = new Set<RunnerName>();
@@ -163,7 +139,7 @@ for (const slug of slugs) {
         }
         continue;
       }
-      if (!args.force) {
+      if (!force) {
         const existing = await readIfExists(join(dir, `judge.${judge.name}.json`));
         if (existing !== null) {
           try {

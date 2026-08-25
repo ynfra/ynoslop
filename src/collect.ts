@@ -7,34 +7,8 @@
 //   bin/collect [--eval <slug>]
 
 import { join } from "node:path";
-import { listEvalSlugs, listRunKeys, loadRun, printTable, runDir, sumScores } from "./common.ts";
-import { config } from "./config.ts";
-import { log, setDebug } from "./log.ts";
-
-setDebug(config.debug);
-
-function fail(msg: string): never {
-  log.error(msg);
-  process.exit(1);
-}
-
-interface Args {
-  eval?: string;
-}
-
-function parseArgs(argv: string[]): Args {
-  const args: Args = {};
-  for (let i = 0; i < argv.length; i++) {
-    switch (argv[i]) {
-      case "--eval":
-        args.eval = argv[++i] ?? fail("--eval needs a slug");
-        break;
-      default:
-        fail(`unknown argument: ${argv[i]} (bin/collect [--eval <slug>])`);
-    }
-  }
-  return args;
-}
+import { listEvalSlugs, listRunKeys, loadRun, parseArgs, printTable, runDir, sumScores } from "./common.ts";
+import { log } from "./log.ts";
 
 /** `bare→skilled`. */
 function pair(bare: number, skilled: number): string {
@@ -46,8 +20,8 @@ function delta(bare: number, skilled: number): string {
   return d > 0 ? `+${d}` : String(d);
 }
 
-const args = parseArgs(process.argv.slice(2));
-const slugs = args.eval ? [args.eval] : await listEvalSlugs();
+const args = parseArgs(process.argv.slice(2), { strings: ["eval"], usage: "bin/collect [--eval <slug>]" });
+const slugs = args.eval ? [args.eval as string] : await listEvalSlugs();
 
 const HEADER = ["eval", "run", "lines", "chars", "words", "slop", "Δchars", "Δslop", "judge Σ (↑ better)"];
 const rows: string[][] = [];

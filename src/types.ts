@@ -1,8 +1,7 @@
 export const RUNNERS = ["claude", "opencode", "codex"] as const;
 export type RunnerName = (typeof RUNNERS)[number];
 
-export const VARIANTS = ["bare", "skilled"] as const;
-export type Variant = (typeof VARIANTS)[number];
+export type Variant = "bare" | "skilled";
 
 export const EFFORTS = ["low", "medium", "high", "max"] as const;
 export type Effort = (typeof EFFORTS)[number];

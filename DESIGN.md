@@ -1,5 +1,8 @@
 # ynoslop — design spec
 
+> **Stale — describes the v1 static site (`public/`),** which the current
+> `bin/*` pipeline no longer generates data for. Kept for the decision log.
+
 What the interface must look like and behave like, and why. Product scope and
 requirements live in `PRD.md`; contributor mechanics in `AGENTS.md`. This
 document is the authority for anything visual: if the code disagrees with it,
