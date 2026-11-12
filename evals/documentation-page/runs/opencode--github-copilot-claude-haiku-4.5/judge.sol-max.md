@@ -1,0 +1,1 @@
+{"A":{"puffery":5,"filler":5,"concreteness":5},"B":{"puffery":3,"filler":1,"concreteness":5},"verdict":"A is concise and direct, while B buries equally concrete documentation in extensive repetition, narration, and self-congratulation."}

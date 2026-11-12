@@ -1,0 +1,12 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/claude-opus-4.8",
+  "skills": [
+    "attention-rundown"
+  ],
+  "recorded": "2026-08-22T21:34:34.313Z",
+  "ms": {
+    "bare": 7122,
+    "skilled": 8139
+  }
+}

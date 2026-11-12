@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/claude-opus-4.8",
+  "skills": [
+    "humanizer"
+  ],
+  "recorded": "2026-08-22T21:34:50.232Z",
+  "ms": {
+    "bare": 7276,
+    "skilled": 8641
+  },
+  "metrics": {
+    "bare": {
+      "lines": 15,
+      "chars": 878,
+      "words": 148,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 3,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 15,
+      "chars": 992,
+      "words": 167,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 1,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "d5bae062fce1b0a4",
+      "order": "skilled-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 4,
+          "filler": 3,
+          "concreteness": 5
+        }
+      },
+      "verdict": "bare is cleaner because skilled adds an irrelevant self-assessment after an otherwise concrete article."
+    }
+  }
+}

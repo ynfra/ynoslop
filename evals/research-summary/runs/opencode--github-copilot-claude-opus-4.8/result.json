@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/claude-opus-4.8",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:34:19.050Z",
+  "ms": {
+    "bare": 19173,
+    "skilled": 19617
+  },
+  "metrics": {
+    "bare": {
+      "lines": 35,
+      "chars": 2812,
+      "words": 406,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 16,
+      "headings": 4,
+      "exclamations": 0,
+      "emDashes": 3,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 15,
+      "chars": 2733,
+      "words": 401,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "1429f62580637751",
+      "order": "skilled-first",
+      "scores": {
+        "bare": {
+          "puffery": 4,
+          "filler": 4,
+          "concreteness": 4
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        }
+      },
+      "verdict": "skilled is more concrete and concise, while bare adds mild promotional phrasing and repetition."
+    }
+  }
+}

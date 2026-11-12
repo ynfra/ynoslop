@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/claude-opus-4.8",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:32:55.242Z",
+  "ms": {
+    "bare": 8551,
+    "skilled": 8252
+  },
+  "metrics": {
+    "bare": {
+      "lines": 34,
+      "chars": 1315,
+      "words": 215,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 6,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 24,
+      "chars": 916,
+      "words": 148,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 1,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "e69ba2072501399a",
+      "order": "bare-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 3,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 4,
+          "concreteness": 5
+        }
+      },
+      "verdict": "skilled is less repetitive while remaining as concrete and free of puffery as bare."
+    }
+  }
+}

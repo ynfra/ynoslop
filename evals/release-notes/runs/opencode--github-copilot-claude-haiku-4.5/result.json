@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/claude-haiku-4.5",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T15:28:06.854Z",
+  "ms": {
+    "bare": 7770,
+    "skilled": 5765
+  },
+  "metrics": {
+    "bare": {
+      "lines": 51,
+      "chars": 1357,
+      "words": 208,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 4,
+      "headings": 10,
+      "exclamations": 0,
+      "emDashes": 1,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 19,
+      "chars": 814,
+      "words": 131,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 5,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "799639c6ba8b3df3",
+      "order": "skilled-first",
+      "scores": {
+        "bare": {
+          "puffery": 4,
+          "filler": 4,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        }
+      },
+      "verdict": "skilled is tighter and avoids bare's mild promotional phrasing and redundant upgrade reminder."
+    }
+  }
+}

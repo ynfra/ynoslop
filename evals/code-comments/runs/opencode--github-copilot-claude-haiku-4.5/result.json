@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/claude-haiku-4.5",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T15:27:17.036Z",
+  "ms": {
+    "bare": 6456,
+    "skilled": 5217
+  },
+  "metrics": {
+    "bare": {
+      "lines": 32,
+      "chars": 1233,
+      "words": 198,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 6,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 20,
+      "chars": 653,
+      "words": 106,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "f745eaacf916954e",
+      "order": "skilled-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 2,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 4,
+          "concreteness": 5
+        }
+      },
+      "verdict": "skilled is leaner and equally concrete, while bare redundantly comments obvious mechanics."
+    }
+  }
+}

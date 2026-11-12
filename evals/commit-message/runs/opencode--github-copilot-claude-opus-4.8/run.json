@@ -1,0 +1,12 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/claude-opus-4.8",
+  "skills": [
+    "attention-spartan"
+  ],
+  "recorded": "2026-08-22T21:33:06.219Z",
+  "ms": {
+    "bare": 5520,
+    "skilled": 5455
+  }
+}

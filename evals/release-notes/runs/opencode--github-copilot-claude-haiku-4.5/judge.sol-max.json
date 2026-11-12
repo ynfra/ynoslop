@@ -1,0 +1,17 @@
+{
+  "hash": "799639c6ba8b3df3",
+  "order": "skilled-first",
+  "scores": {
+    "bare": {
+      "puffery": 4,
+      "filler": 4,
+      "concreteness": 5
+    },
+    "skilled": {
+      "puffery": 5,
+      "filler": 5,
+      "concreteness": 5
+    }
+  },
+  "verdict": "skilled is tighter and avoids bare's mild promotional phrasing and redundant upgrade reminder."
+}

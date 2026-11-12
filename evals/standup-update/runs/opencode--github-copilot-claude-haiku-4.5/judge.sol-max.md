@@ -1,0 +1,1 @@
+{"A":{"puffery":5,"filler":3,"concreteness":5},"B":{"puffery":5,"filler":4,"concreteness":5},"verdict":"B is cleaner because it avoids A's repetitive TL;DR and action recap while remaining equally concrete."}

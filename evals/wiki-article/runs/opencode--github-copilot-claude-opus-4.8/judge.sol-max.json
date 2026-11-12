@@ -1,0 +1,17 @@
+{
+  "hash": "d5bae062fce1b0a4",
+  "order": "skilled-first",
+  "scores": {
+    "bare": {
+      "puffery": 5,
+      "filler": 5,
+      "concreteness": 5
+    },
+    "skilled": {
+      "puffery": 4,
+      "filler": 3,
+      "concreteness": 5
+    }
+  },
+  "verdict": "bare is cleaner because skilled adds an irrelevant self-assessment after an otherwise concrete article."
+}

@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/claude-haiku-4.5",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T15:27:05.324Z",
+  "ms": {
+    "bare": 6639,
+    "skilled": 4738
+  },
+  "metrics": {
+    "bare": {
+      "lines": 43,
+      "chars": 759,
+      "words": 121,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 4,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 7,
+      "chars": 467,
+      "words": 77,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 4,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "a7f73d08ac81e558",
+      "order": "skilled-first",
+      "scores": {
+        "bare": {
+          "puffery": 4,
+          "filler": 3,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 4
+        }
+      },
+      "verdict": "skilled is leaner and free of filler, while bare is more concrete but padded with introductory and redundant guidance."
+    }
+  }
+}

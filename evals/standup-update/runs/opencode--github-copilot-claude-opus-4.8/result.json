@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/claude-opus-4.8",
+  "skills": [
+    "attention-rundown"
+  ],
+  "recorded": "2026-08-22T21:34:34.313Z",
+  "ms": {
+    "bare": 7122,
+    "skilled": 8139
+  },
+  "metrics": {
+    "bare": {
+      "lines": 21,
+      "chars": 696,
+      "words": 115,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 6,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 1,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 15,
+      "chars": 907,
+      "words": 149,
+      "slopWords": 0,
+      "emoji": 8,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 6,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "f4bd95e59372eb83",
+      "order": "skilled-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 4,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 4,
+          "filler": 3,
+          "concreteness": 5
+        }
+      },
+      "verdict": "bare is cleaner and less repetitive, while both preserve the notes' concrete details."
+    }
+  }
+}

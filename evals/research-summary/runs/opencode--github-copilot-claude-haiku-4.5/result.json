@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/claude-haiku-4.5",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T15:28:26.795Z",
+  "ms": {
+    "bare": 12350,
+    "skilled": 7557
+  },
+  "metrics": {
+    "bare": {
+      "lines": 45,
+      "chars": 3185,
+      "words": 438,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 11,
+      "headings": 4,
+      "exclamations": 0,
+      "emDashes": 1,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 9,
+      "chars": 1372,
+      "words": 184,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 1,
+      "exclamations": 0,
+      "emDashes": 2,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "e931e6e693d2116c",
+      "order": "bare-first",
+      "scores": {
+        "bare": {
+          "puffery": 3,
+          "filler": 2,
+          "concreteness": 4
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 4
+        }
+      },
+      "verdict": "skilled is more direct and restrained, while bare adds promotional phrasing and redundant framing."
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "hash": "5e558e28a9aa0c65",
+  "order": "skilled-first",
+  "scores": {
+    "bare": {
+      "puffery": 5,
+      "filler": 3,
+      "concreteness": 5
+    },
+    "skilled": {
+      "puffery": 5,
+      "filler": 5,
+      "concreteness": 5
+    }
+  },
+  "verdict": "skilled is more concise, while bare redundantly restates each flag despite being equally concrete and free of puffery."
+}

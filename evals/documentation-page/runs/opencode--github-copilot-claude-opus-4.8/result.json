@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/claude-opus-4.8",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:33:25.063Z",
+  "ms": {
+    "bare": 9905,
+    "skilled": 8937
+  },
+  "metrics": {
+    "bare": {
+      "lines": 65,
+      "chars": 1451,
+      "words": 211,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 10,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 40,
+      "chars": 978,
+      "words": 154,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 3,
+      "headings": 4,
+      "exclamations": 0,
+      "emDashes": 4,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "5e558e28a9aa0c65",
+      "order": "skilled-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 3,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        }
+      },
+      "verdict": "skilled is more concise, while bare redundantly restates each flag despite being equally concrete and free of puffery."
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "hash": "b2efe9930e61bc2b",
+  "order": "skilled-first",
+  "scores": {
+    "bare": {
+      "puffery": 5,
+      "filler": 4,
+      "concreteness": 5
+    },
+    "skilled": {
+      "puffery": 5,
+      "filler": 3,
+      "concreteness": 5
+    }
+  },
+  "verdict": "B is cleaner because it avoids A's repetitive TL;DR and action recap while remaining equally concrete."
+}

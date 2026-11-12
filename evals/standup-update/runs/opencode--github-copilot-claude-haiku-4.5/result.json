@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/claude-haiku-4.5",
+  "skills": [
+    "attention-rundown"
+  ],
+  "recorded": "2026-08-22T13:57:21.136Z",
+  "ms": {
+    "bare": 5465,
+    "skilled": 6532
+  },
+  "metrics": {
+    "bare": {
+      "lines": 21,
+      "chars": 724,
+      "words": 106,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 18,
+      "chars": 918,
+      "words": 136,
+      "slopWords": 0,
+      "emoji": 9,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 7,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "b2efe9930e61bc2b",
+      "order": "skilled-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 4,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 3,
+          "concreteness": 5
+        }
+      },
+      "verdict": "B is cleaner because it avoids A's repetitive TL;DR and action recap while remaining equally concrete."
+    }
+  }
+}

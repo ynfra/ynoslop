@@ -1,0 +1,17 @@
+{
+  "hash": "e931e6e693d2116c",
+  "order": "bare-first",
+  "scores": {
+    "bare": {
+      "puffery": 3,
+      "filler": 2,
+      "concreteness": 4
+    },
+    "skilled": {
+      "puffery": 5,
+      "filler": 5,
+      "concreteness": 4
+    }
+  },
+  "verdict": "skilled is more direct and restrained, while bare adds promotional phrasing and redundant framing."
+}

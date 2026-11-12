@@ -1,0 +1,17 @@
+{
+  "hash": "f745eaacf916954e",
+  "order": "skilled-first",
+  "scores": {
+    "bare": {
+      "puffery": 5,
+      "filler": 2,
+      "concreteness": 5
+    },
+    "skilled": {
+      "puffery": 5,
+      "filler": 4,
+      "concreteness": 5
+    }
+  },
+  "verdict": "skilled is leaner and equally concrete, while bare redundantly comments obvious mechanics."
+}

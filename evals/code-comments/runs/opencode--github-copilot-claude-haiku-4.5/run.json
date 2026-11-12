@@ -1,0 +1,12 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/claude-haiku-4.5",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T15:27:17.036Z",
+  "ms": {
+    "bare": 6456,
+    "skilled": 5217
+  }
+}

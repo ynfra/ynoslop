@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/claude-opus-4.8",
+  "skills": [
+    "no-slop-writing"
+  ],
+  "recorded": "2026-08-22T21:33:40.258Z",
+  "ms": {
+    "bare": 7834,
+    "skilled": 7359
+  },
+  "metrics": {
+    "bare": {
+      "lines": 20,
+      "chars": 914,
+      "words": 152,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 5,
+      "headings": 5,
+      "exclamations": 0,
+      "emDashes": 3,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 19,
+      "chars": 887,
+      "words": 149,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 5,
+      "exclamations": 0,
+      "emDashes": 1,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "ffb1ab1a8744c320",
+      "order": "bare-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 4,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        }
+      },
+      "verdict": "skilled is slightly tighter, while both are concrete and free of puffery."
+    }
+  }
+}

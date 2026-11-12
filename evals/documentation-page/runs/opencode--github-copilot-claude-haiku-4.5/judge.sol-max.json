@@ -1,0 +1,17 @@
+{
+  "hash": "9ff8efeec54828c9",
+  "order": "skilled-first",
+  "scores": {
+    "bare": {
+      "puffery": 3,
+      "filler": 1,
+      "concreteness": 5
+    },
+    "skilled": {
+      "puffery": 5,
+      "filler": 5,
+      "concreteness": 5
+    }
+  },
+  "verdict": "skilled is concise and direct, while bare buries equally concrete documentation in extensive repetition, narration, and self-congratulation."
+}

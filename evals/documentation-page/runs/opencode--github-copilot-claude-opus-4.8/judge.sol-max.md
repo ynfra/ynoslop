@@ -1,0 +1,1 @@
+{"A":{"puffery":5,"filler":5,"concreteness":5},"B":{"puffery":5,"filler":3,"concreteness":5},"verdict":"A is more concise, while B redundantly restates each flag despite being equally concrete and free of puffery."}

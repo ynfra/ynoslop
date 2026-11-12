@@ -1,0 +1,1 @@
+{"A":{"puffery":5,"filler":5,"concreteness":4},"B":{"puffery":4,"filler":3,"concreteness":5},"verdict":"A is leaner and free of filler, while B is more concrete but padded with introductory and redundant guidance."}

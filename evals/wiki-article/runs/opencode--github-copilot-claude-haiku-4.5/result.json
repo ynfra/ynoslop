@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/claude-haiku-4.5",
+  "skills": [
+    "humanizer"
+  ],
+  "recorded": "2026-08-22T13:57:09.111Z",
+  "ms": {
+    "bare": 6088,
+    "skilled": 5809
+  },
+  "metrics": {
+    "bare": {
+      "lines": 15,
+      "chars": 913,
+      "words": 149,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 4,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 7,
+      "chars": 816,
+      "words": 131,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 1,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "e5f6a5d866bb462b",
+      "order": "skilled-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 4,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        }
+      },
+      "verdict": "A is slightly leaner, while B adds unnecessary headings and formal phrasing."
+    }
+  }
+}

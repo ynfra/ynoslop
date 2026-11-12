@@ -1,0 +1,1 @@
+{"A":{"puffery":4,"filler":3,"concreteness":5},"B":{"puffery":5,"filler":5,"concreteness":5},"verdict":"B is cleaner because A adds an irrelevant self-assessment after an otherwise concrete article."}

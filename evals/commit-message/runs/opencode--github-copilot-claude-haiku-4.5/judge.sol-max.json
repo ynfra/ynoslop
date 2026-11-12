@@ -1,0 +1,17 @@
+{
+  "hash": "7efeac87d5a5a3e9",
+  "order": "skilled-first",
+  "scores": {
+    "bare": {
+      "puffery": 5,
+      "filler": 5,
+      "concreteness": 5
+    },
+    "skilled": {
+      "puffery": 4,
+      "filler": 4,
+      "concreteness": 5
+    }
+  },
+  "verdict": "B is cleaner and less repetitive, while both responses are highly concrete."
+}

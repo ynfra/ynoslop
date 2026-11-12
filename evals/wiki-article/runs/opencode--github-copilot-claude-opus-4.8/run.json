@@ -1,0 +1,12 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/claude-opus-4.8",
+  "skills": [
+    "humanizer"
+  ],
+  "recorded": "2026-08-22T21:34:50.232Z",
+  "ms": {
+    "bare": 7276,
+    "skilled": 8641
+  }
+}

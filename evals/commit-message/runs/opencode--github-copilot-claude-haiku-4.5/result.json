@@ -1,0 +1,57 @@
+{
+  "runner": "opencode",
+  "model": "github-copilot/claude-haiku-4.5",
+  "skills": [
+    "attention-spartan"
+  ],
+  "recorded": "2026-08-22T13:56:31.997Z",
+  "ms": {
+    "bare": 5409,
+    "skilled": 4851
+  },
+  "metrics": {
+    "bare": {
+      "lines": 10,
+      "chars": 449,
+      "words": 79,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 3,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    },
+    "skilled": {
+      "lines": 9,
+      "chars": 481,
+      "words": 83,
+      "slopWords": 0,
+      "emoji": 0,
+      "bullets": 0,
+      "headings": 0,
+      "exclamations": 0,
+      "emDashes": 0,
+      "hits": []
+    }
+  },
+  "judges": {
+    "sol-max": {
+      "hash": "7efeac87d5a5a3e9",
+      "order": "skilled-first",
+      "scores": {
+        "bare": {
+          "puffery": 5,
+          "filler": 5,
+          "concreteness": 5
+        },
+        "skilled": {
+          "puffery": 4,
+          "filler": 4,
+          "concreteness": 5
+        }
+      },
+      "verdict": "B is cleaner and less repetitive, while both responses are highly concrete."
+    }
+  }
+}
